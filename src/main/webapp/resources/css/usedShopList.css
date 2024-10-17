@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.sidebar {
+    width: 200px; /* 사이드바의 너비 */
+    background-color: #ffffff; /* 사이드바 배경색 */
+    padding: 20px; /* 패딩 추가 */
+    position: absolute; /* 절대 위치로 설정 */
+    top: 150px; /* 헤더 아래 위치 (헤더 높이에 따라 조정) */
+    bottom: 120px; /* 푸터 위 위치 (푸터 높이에 따라 조정) */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+}
+
+
+.sidebar h3 {
+    margin-top: 0; /* 제목 상단 여백 제거 */
+}
+
+.sidebar a {
+    display: block; /* 링크를 블록 요소로 설정하여 전체 너비를 차지하게 함 */
+    padding: 10px; /* 링크 패딩 */
+    color: #333; /* 링크 글자 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.sidebar a:hover {
+    background-color: #ddd; /* 마우스 오버 시 배경색 변경 */
+}
