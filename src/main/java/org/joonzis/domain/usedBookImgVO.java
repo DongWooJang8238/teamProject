@@ -11,5 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class usedBookImgVO {
 	private int ubno;
-	private String ubookimage;
+	private String ubookimages;
 }

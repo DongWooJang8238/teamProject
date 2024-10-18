@@ -5,11 +5,11 @@ let imgName = f.ubookImage;
 // 버튼 이벤트
 document.querySelectorAll('button').forEach(btn => {
 	btn.addEventListener('click', () => {
-		console.log(btn.innerHTML);
+//		console.log(btn.innerHTML);
 		if(btn.innerHTML === "등록"){
 			usedShopInsert();
 		}else if(btn.innerHTML === "취소"){
-			location.href = "/used/list";
+			location.href = "/used/list?genre=0&pageNum=1&amount=10";
 		}
 	});
 });
@@ -23,9 +23,6 @@ function usedShopInsert() {
 	console.log("대표 이미지 : " + f.ubookImage.value);
 	console.log(f.content.value);
 	console.log(f.mno.value);
-	f.ubookimage.forEach(img => {
-		console.log(img.value);
-	})
 	f.action = "/used/insert";
 	f.submit();
 	
@@ -66,16 +63,18 @@ document.querySelector('.fileUpload input').addEventListener('change', e => {
 	.then(response => response.json())
 	.then(data => {
 		let str = '';
+		let i = 0;
 		if(data){
 			// vo에 담긴 파일명들을 hidden으로 form 내부에 저장
 			data.forEach(file => {
-				console.log(file.ubookimage);
-				str += `<input type="hidden" name="ubookimage" value="${file.ubookimage}">`;
+				console.log(file.ubookimages);
+				str += `<input type="hidden" name="usedBookImgs[${i}].ubookimages" value="${file.ubookimages}">`;
+				i++;
 			});
 			// 첫번째 이미지를 대표 이미지로 사용하기 위해 저장
-			imgName.value = data[0].ubookimage; 
+			imgName.value = data[0].ubookimages; 
 			// jsp 폼 태그 안에 str 데이터 추가삽입
-			f.innerHTML += str;
+			f.insertAdjacentHTML('beforeend', str);
 		}else {
 			alert('서버 오류');
 		}

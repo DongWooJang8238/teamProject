@@ -149,7 +149,7 @@ public class ShopUploadController {
 				
 				
 				usedBookImgVO attachDto = new usedBookImgVO();
-				attachDto.setUbookimage(uploadFolder + "\\" + getFolder() + "\\" + uploadFileName);
+				attachDto.setUbookimages(uploadFolder + "\\" + getFolder() + "\\" + uploadFileName);
 				
 				list.add(attachDto);
 				
