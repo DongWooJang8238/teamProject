@@ -3,20 +3,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.joonzis.mapper.BoardLikesMapper">
-	<insert id="insertLike" parameterType="map">
+	<insert id="insertLike" parameterType="org.joonzis.domain.BoardLikeVO">
 		INSERT INTO table_likes (likeno, boardno, mno)
 		VALUES (table_likes_seq.NEXTVAL, #{boardno}, #{mno})
 	</insert>
 
-	<delete id="deleteLike" parameterType="map">
+	<delete id="deleteLike" parameterType="org.joonzis.domain.BoardLikeVO">
 		DELETE FROM table_likes WHERE boardno = #{boardno} AND mno = #{mno}
 	</delete>
 
-	<select id="countLikes" parameterType="int" resultType="int">
+	<select id="countLikes" parameterType="int" resultType="org.joonzis.domain.BoardLikeVO">
 		SELECT COUNT(*) FROM table_likes WHERE boardno = #{boardno}
 	</select>
 
-	<select id="isLiked" parameterType="map" resultType="int">
+	<select id="isLiked" parameterType="org.joonzis.domain.BoardLikeVO" resultType="int">
 		SELECT COUNT(*) FROM table_likes WHERE boardno = #{boardno} AND mno =
 		#{mno}
 	</select>

@@ -51,11 +51,12 @@
       </div>
    </div>
 	</div>
+	<!-- 
 	<div id="like-section">
         <button id="like-btn" data-boardno="${boardno}" data-mno="${mno}">
             좋아요
         </button>
-        <span id="like-count">${likeCount}</span>
+        <span id="like-count">${likeCount}</span> -->
     </div>
 		<div class="panel-body-btns">
 			<button type="button" class="btn btn-sec" id="modifyBtn">수정</button>			

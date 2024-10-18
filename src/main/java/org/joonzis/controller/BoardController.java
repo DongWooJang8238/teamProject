@@ -37,7 +37,7 @@ public class BoardController {
 		
 		if(cri.getPageNum() == 0 || cri.getAmount() == 0) {
 			cri.setPageNum(1);
-			cri.setAmount(5);
+			cri.setAmount(10);
 		}
 		
 		int total = service.getTotal();
