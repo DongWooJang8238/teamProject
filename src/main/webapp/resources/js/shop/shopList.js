@@ -20,6 +20,12 @@ document.querySelectorAll('.sidebar a').forEach(a => {
 	});
 });
 
+document.querySelectorAll('.card-title a').forEach(a => {
+	a.addEventListener('click', e => {
+		e.preventDefault();
+	});
+});
+
 // 상품 클릭 이벤트 - 조회
 function goGet(bno) {
 //	console.log(bno);
