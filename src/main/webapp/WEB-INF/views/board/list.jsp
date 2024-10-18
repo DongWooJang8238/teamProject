@@ -69,6 +69,7 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="../layout/footer.jsp" />
 <script type="text/javascript" src="/resources/js/board/boardList.js"></script>
 </body>
 </html>

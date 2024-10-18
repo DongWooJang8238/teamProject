@@ -143,11 +143,7 @@ function regReplyModalStyle(){
 }
 // 실제 댓글 등록 함수
 function registerReply(){
-	let input = document.createElement('input');
-	input.name = 'mno';
-	input.value = 1;
-	input.type = 'hidden';
-	f.append("mno",input);
+
 	if(inputReply.value == '' || inputReplyer.value == ''){
 		alert('모든 내용을 입력하세요.');
 		return;
@@ -157,7 +153,8 @@ function registerReply(){
 			{
 				reply : inputReply.value,
 				replyer : inputReplyer.value,
-				boardno : f.boardno.value
+				boardno : f.boardno.value,
+				mno : 1
 			},
 			function(result){
 				console.log("result : " + result);
