@@ -97,7 +97,7 @@ public class BoardController {
 		// 게시글 등록으로 이동
 		@GetMapping("/register")
 		public String register2() {
-			log.info("register...");
+			log.info("register2 게시글 등록 이동...");
 			return "/board/register";
 		}
 		

@@ -1,4 +1,8 @@
 /*-------------- Form 관련 요소들 ------*/
+<<<<<<< HEAD
+=======
+//const f = document.forms[0];
+>>>>>>> origin/main
 
 // 헤더 요소들 (로그인,로그아웃,회원가입,마이페이지,카트)
 const loginButton = document.getElementById('login');
@@ -6,12 +10,13 @@ const logoutButton = document.getElementById('logout');
 const signupButton = document.getElementById('signup');
 const mypageButton = document.getElementById('mypage');
 const cart = document.getElementById('cart');
-
+const userId = document.querySelector('input[name="userId"]');
 
 // 헤더 각 버튼 이벤트 핸들러
 document.querySelectorAll(".user-options button").forEach(a => {
 	a.addEventListener('click', ()=>{
-
+		const form = new FormData();
+		form.append(userId);
 		let menu = a.id;
 		 console.log(menu);
 		if(menu === "login"){
@@ -23,8 +28,9 @@ document.querySelectorAll(".user-options button").forEach(a => {
 		}else if(menu === "cart"){
 			goToCart();
 		}else if(menu === "myPage"){
-			f.action = "/User/myPage";
-			f.submit();
+			
+			form.action = "/User/myPage";
+			form.submit();
 		}
 		
 	});
