@@ -13,7 +13,7 @@
 		<header>
 			<div class="header-container">
 				<div class="logo">
-					<a href="/"> <img src="logo.png" alt="Logo">${vo }
+					<a href="/"> <img src="/resources/images/PAGE_GROUND_Text.png" alt="Logo">
 					</a>
 				</div>
 				<div class="user-options">

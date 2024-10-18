@@ -17,16 +17,21 @@ document.querySelectorAll(".user-options button").forEach(a => {
 		if(menu === "login"){
 			location.href = '/User/login';
 		}else if(menu === "logout"){
-			
+			// 추후 적용 예정 ( 시큐리티 )
 		}else if(menu === "signup"){
 			location.href = '/User/signup';
 		}else if(menu === "cart"){
 			goToCart();
 		}else if(menu === "myPage"){
-			const form = new FormData();
-			form.append(userId);
-			form.action = "/User/myPage";
-			form.submit();
+			if(userId.value === ""){
+				if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')){
+					location.href = '/User/login';
+				}else {
+					console.log('로그인안함');
+				}
+			}else {
+				location.href = '/User/myPage?userId=' + userId.value;
+			}
 		}
 		
 	});

@@ -117,7 +117,7 @@ body {
 <body>
 	<div class="signup-container">
 		<div class="logo">
-			<a href="/">로고</a>
+			<a href="/"><img src="/resources/images/PAGE_GROUND.png" style="width: 100px; height: 100px;"></a>
 		</div>
 		<h2>아이디 찾기</h2>
 		<form action="#" method="post">

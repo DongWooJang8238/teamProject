@@ -4,7 +4,7 @@
     <div class="footer-container">
         <div class="footer-logo">
             <a href="/">
-				 <img src="logo.png" alt="Logo">
+				 <img src="/resources/images/PAGE_GROUND.png" alt="Logo" style="width: 70px; height: 70px">
 			</a>
         </div>
         <div class="team-info">
