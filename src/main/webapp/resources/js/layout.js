@@ -1,5 +1,4 @@
 /*-------------- Form 관련 요소들 ------*/
-const f = document.forms[0];
 
 // 헤더 요소들 (로그인,로그아웃,회원가입,마이페이지,카트)
 const loginButton = document.getElementById('login');

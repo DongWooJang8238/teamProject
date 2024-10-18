@@ -10,7 +10,6 @@
 </head>
 <body>
 
-	<form>
 		<header>
 			<div class="header-container">
 				<div class="logo">
@@ -47,4 +46,3 @@
 				</div>
 			</div>
 	</nav>
-	</form>
