@@ -70,7 +70,7 @@
         <button id="btn-x" class="btn-x">X</button>
     </div>
 <jsp:include page="../layout/footer.jsp"></jsp:include>
-    <script type="text/javascript" src="/resources/js/easyplay.js"></script>
+    <script type="text/javascript" src="/resources/js/game/easyplay.js"></script>
 </body>
 </html>
 

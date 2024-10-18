@@ -42,7 +42,7 @@
          <button type="button" class="btn btn-fir" id="indexBtn">목록으로 이동</button>
       </div>
    </div>
-
+<jsp:include page="../layout/footer.jsp" />
    <script type="text/javascript" src="/resources/js/board/modify.js"></script>   
 </body>
 </html>
