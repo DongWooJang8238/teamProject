@@ -5,11 +5,11 @@
 <mapper namespace="org.joonzis.mapper.BoardLikesMapper">
 	<insert id="insertLike" parameterType="map">
 		INSERT INTO table_likes (likeno, boardno, mno)
-		VALUES (table_likes_seq.NEXTVAL, #{boardno}, 1)
+		VALUES (table_likes_seq.NEXTVAL, #{boardno}, #{mno})
 	</insert>
 
 	<delete id="deleteLike" parameterType="map">
-		DELETE FROM table_likes WHERE boardno = #{boardno} AND mno = 1
+		DELETE FROM table_likes WHERE boardno = #{boardno} AND mno = #{mno}
 	</delete>
 
 	<select id="countLikes" parameterType="int" resultType="int">
@@ -18,6 +18,6 @@
 
 	<select id="isLiked" parameterType="map" resultType="int">
 		SELECT COUNT(*) FROM table_likes WHERE boardno = #{boardno} AND mno =
-		1
+		#{mno}
 	</select>
 </mapper>

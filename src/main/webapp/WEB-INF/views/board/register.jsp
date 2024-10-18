@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<div class="page-header">
 		<h1>게시판 등록</h1>
 	</div>

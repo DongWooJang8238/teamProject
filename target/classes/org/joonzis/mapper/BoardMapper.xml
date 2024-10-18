@@ -30,7 +30,7 @@
 			SELECT table_board_seq.nextval FROM dual
 		</selectKey>
 		insert into table_board(boardno, mno, title, content, writer, category, REGDATE, UPDATEDATE) values(
-		#{boardno}, 1, #{title}, #{content}, #{writer}, #{category}, sysdate, sysdate)
+		#{boardno}, #{mno}, #{title}, #{content}, #{writer}, #{category}, sysdate, sysdate)
 	</insert>
 	
 	<update id="modify" parameterType="org.joonzis.domain.BoardVO">

@@ -62,6 +62,13 @@ function register(){
 		return;
 	}
 	
+	let input = document.createElement('input');
+	input.name = 'mno';
+	input.value = 1;
+	input.type = 'hidden';
+	f.append("mno",input);
+	
+	// 파일 첨부
 	let str = '';
 	document.querySelectorAll('.uploadResult ul li').forEach( (li, index) => {
 		let path = li.getAttribute('path');
