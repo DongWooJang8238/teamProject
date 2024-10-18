@@ -1,4 +1,6 @@
-$(document).ready(function(){
+console.log('like js');
+
+const likeService = (function(){
     // 좋아요 버튼 클릭 이벤트
     $('#like-btn').click(function(){
         var boardno = $(this).data('boardno');
@@ -6,7 +8,7 @@ $(document).ready(function(){
         
         var likeData = {
             boardno: boardno,
-            mno: mno
+            mno: 1
         };
         
         // 좋아요 토글 요청

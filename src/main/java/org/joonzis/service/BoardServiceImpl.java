@@ -51,8 +51,9 @@ public class BoardServiceImpl implements BoardService {
 		if (vo.getAttachList() != null && vo.getAttachList().size() > 0) {
 		    vo.getAttachList().forEach(attach -> {
 		        attach.setBoardno(vo.getBoardno());  // 게시글 번호 설정
-		        attachMapper.register(attach);       // 첨부 파일 등록
-		        log.info("Registered boardno: " + vo.getBoardno());
+		        log.warn("아타치 등록 데이터 : " + attach.getBoardno());
+		        int atResult = attachMapper.register(attach);       // 첨부 파일 등록
+		        log.warn("아타치 등록 결과 : " + atResult);
 		    });
 		}
 	
