@@ -12,8 +12,6 @@ const userId = document.querySelector('input[name="userId"]');
 // 헤더 각 버튼 이벤트 핸들러
 document.querySelectorAll(".user-options button").forEach(a => {
 	a.addEventListener('click', ()=>{
-		const form = new FormData();
-		form.append(userId);
 		let menu = a.id;
 		 console.log(menu);
 		if(menu === "login"){
@@ -25,7 +23,8 @@ document.querySelectorAll(".user-options button").forEach(a => {
 		}else if(menu === "cart"){
 			goToCart();
 		}else if(menu === "myPage"){
-			
+			const form = new FormData();
+			form.append(userId);
 			form.action = "/User/myPage";
 			form.submit();
 		}
