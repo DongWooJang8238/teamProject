@@ -26,8 +26,8 @@ function usedShopInsert() {
 	f.ubookimage.forEach(img => {
 		console.log(img.value);
 	})
-//	f.action = "/used/insert";
-//	f.submit();
+	f.action = "/used/insert";
+	f.submit();
 	
 }
 /*

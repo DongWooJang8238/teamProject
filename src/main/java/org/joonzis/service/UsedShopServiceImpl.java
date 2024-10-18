@@ -22,6 +22,7 @@ public class UsedShopServiceImpl implements UsedShopService{
 		// 중고 상품 db에 저장
 		int result = mapper.usedShopInsert(vo);
 		// 저장이 완료됬다면, 이미지 파일들 저장
+		
 		return result;
 	}
 }

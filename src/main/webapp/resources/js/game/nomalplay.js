@@ -1,5 +1,6 @@
 console.log("kaak");
 
+
 let currentIndex = 0;
 
 function showNextQuest() {
@@ -33,6 +34,7 @@ function checkAnswer() {
         alert("오답입니다. 다시 시도하세요.");
     }
 }
+
 
 window.onload = function() {
     showNextQuest(); 

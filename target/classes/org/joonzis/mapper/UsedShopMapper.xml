@@ -10,4 +10,9 @@
 	<insert id="usedShopInsert" parameterType="org.joonzis.domain.UsedBookVO">
 		insert into tbl_ubook values ( seq_ubno.nextval , #{mno}, #{gno}, #{title}, #{content}, #{ubookPrice}, #{ubookImage}, #{status}, sysdate)
 	</insert>
+	
+	<!-- 중고상품 이미지 등록 -->
+	<insert id="usedShopImgInsert" parameterType="org.joonzis.domain.usedBookImgVO">
+		insert into tbl_ubook_image values ( #{ubno}, #{ )
+	</insert>
 </mapper>
