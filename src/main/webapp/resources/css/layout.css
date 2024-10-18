@@ -87,10 +87,10 @@ footer {
     background-color: #333;
     color: white;
     padding: 20px 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    /* position: absolute; -> 제거 */
+    /* bottom: 0; -> 제거 */
+    /* left: 0; -> 제거 */
+    /* right: 0; -> 제거 */
 }
 
 .footer-container {
@@ -128,3 +128,4 @@ footer {
     padding: 5px;
     width: 250px;
 }
+
