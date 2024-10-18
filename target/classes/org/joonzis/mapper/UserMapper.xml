@@ -84,6 +84,11 @@
     	where userId = #{userId}	
 	</update>
 	
+	<!-- 유저 정보 검색 (by.mno) -->
+	<select id="userSelectOne" parameterType="int" resultType="org.joonzis.domain.UserVO">
+		select * from tbl_user where mno = #{mno}
+	</select>
+	
 	<!-- 유저 탈퇴 -->
 	<delete id="deleteAccount" parameterType="String">
 		delete from tbl_user where userId = #{userId}
