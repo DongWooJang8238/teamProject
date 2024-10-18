@@ -260,36 +260,6 @@ public class GameController {
 		
 		return "/game/easyplay";
 	}
-	/*
-	@PostMapping("/checkAnswer")
-    public String checkAnswer(@RequestParam("gameanswer") String gameAnswer, Model model) {
-        String result = gameservice.easyCheck(gameAnswer);
-
-        if (result.equals("참") ) {
-            model.addAttribute("resultMessage", "정답입니다!");
-        } else {
-            model.addAttribute("resultMessage", "틀렸습니다!");
-        }
-
-        return "/game/play";
-    }	
-	*/
-		
-	/*
-	@GetMapping("/read")
-	public String read(@RequestParam("bno") int bno, Model model) {
-		log.info("read..." + bno);
-		model.addAttribute("bvo", gameservice.read(bno));
-		return "/board/read";
-	}
-	*/
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
