@@ -57,6 +57,7 @@ const replyService = (function() {
 				callback(data);
 			})
 			.catch(err => console.log(err));
+		
 	}
 	
 	return {

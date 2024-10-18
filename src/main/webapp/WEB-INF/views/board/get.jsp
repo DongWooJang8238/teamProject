@@ -38,7 +38,7 @@
 					</tr>
 				</tbody>
 			</table>
-		</form>
+		
 		<div class="file-container">
    <div class="file-header">
       <div class="file-title">
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 	</div>
-	
+	</form>
 	<div class="panel-footer">
 		<div class="panel-footer-body">
 			<ul class="chat">
@@ -112,7 +112,7 @@
 	<div id="modal">
 		<div class="modal-content">
 			<div class="modal-title">
-				<a>새 게시글 등록</a>
+				<a>댓글 수정</a>
 			</div>
 			<hr>
 			<div class="modal-body">
@@ -155,6 +155,7 @@
 				<button type="button" class="btn btn-fir" id="closeModalBtn">취소</button>
 			</div>
 		</div>
+		
 	</div>
 	
 	<script type="text/javascript" src="/resources/js/board/reply.js"></script>

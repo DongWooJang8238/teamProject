@@ -8,7 +8,7 @@ linkEle.rel = 'stylesheet';
 linkEle.href = CSS_FILE_PATH;
 
 // 3. head 태그에 link 엘리먼트 추가
-document.head.appendChild(linkEle);
+//document.head.appendChild(linkEle);
 
 // form 객체 가져오기
 const f = document.forms[0];
@@ -17,6 +17,7 @@ const f = document.forms[0];
 document.querySelectorAll(".panel-body-btns button").forEach( btn => {
 	btn.addEventListener('click', (e) => {
 
+		console.log('버튼 클릭 이벤트');
 		// 버튼의 id 속성 값 확인
 		let type = btn.getAttribute('id');
 
@@ -27,26 +28,16 @@ document.querySelectorAll(".panel-body-btns button").forEach( btn => {
 		}else if(type === 'resetBtn'){
 			f.reset(); // 폼 초기화
 		}else if(type === 'registerBtn'){
+			console.log('게시글 등록 이벤트');
 			register(); // 게시글 등록
 		}
 	});
 });
 
-function setStorageData(pageNum, amount){
-	let pageData = {
-		pageNum : pageNum,
-		amount : amount
-	};
-	localStorage.setItem('page_data', JSON.stringify(pageData));
-}
-function getStorageData(){
-	return JSON.parse(localStorage.getItem('page_data'));
-	
-}
-
 function register(){
+	console.log('게시글 등록 함수');
 	if(f.category.value == ''){
-		alert("카테고리를 입력하세요.");
+		alert("제목을 입력하세요.");
 		return;
 	}
 	if(f.title.value == ''){
@@ -83,6 +74,7 @@ function register(){
 	
 	//f.innerHTML += str;
 	f.insertAdjacentHTML('beforeend', str);
+	console.log(f);
 	
 	
 	
