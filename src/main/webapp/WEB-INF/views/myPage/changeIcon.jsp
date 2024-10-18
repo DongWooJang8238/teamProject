@@ -177,8 +177,8 @@ body {
 						</ul></li>
 					<li><a href="userInfo" onclick="toggleSubMenu('member-info')">회원정보</a>
 						<ul id="member-info" class="sub-menu">
-							<li><a id="checkPage"
-								href="/User/checkPassword?userId=${result.userId }">회원정보 수정</a></li>
+							<li><a id="goMypage"
+								href="/User/myPageUpdate?userId=${result.userId }">회원정보 수정</a></li>
 							<li><a href="#">배송지 관리</a></li>
 						</ul></li>
 					<li><a href="#">나의 게시글</a></li>
@@ -188,6 +188,6 @@ body {
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript" src="/resources/js/myPage/changeIcon.js"></script>
-<script type="text/javascript" src="/resources/js/myPage/sidebar.js"></script>
+<script type="text/javascript" src="/resources/js/changeIcon.js"></script>
+<script type="text/javascript" src="/resources/js/sidebar.js"></script>
 </html>

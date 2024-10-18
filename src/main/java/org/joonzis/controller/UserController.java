@@ -14,7 +14,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -166,25 +165,8 @@ public class UserController {
 	// 유저 정보 수정 페이지 이동
 	@GetMapping("/checkPassword")
 		public String checkPassword(Model model,String userId) {
-		log.warn("wjiofahjfiafesfgejsif" + userId);
 		UserVO result = service.selectUserId(userId);
 //		service.checkPassword(result);
-		
-		// 이메일 가져오기 코드
-		String email = result.getUserEmail();
-		String saveEmail = null;
-		String saveDomain = null;	
-		String[] arr = email.split("@");
-		for (int i = 0; i < arr.length; i++) {
-			log.info("문자열 자르기잉이이인ㅋ : " + arr[i]);
-			saveEmail = arr[0];
-			saveDomain = arr[1];
-		}
-		log.info("이메일 : " + saveEmail);
-		log.info("도메인 : " + saveDomain);
-		
-		model.addAttribute("saveEmail", saveEmail);
-		model.addAttribute("saveDomain", saveDomain);
 		
 		model.addAttribute("result", result);
 		log.info("비밀번호 확인 : " + result.getUserId());
@@ -197,29 +179,11 @@ public class UserController {
 	// 유저 정보 수정 페이지 이동
 	@GetMapping("/myPageUpdate")
 		public String myPageUpdate(Model model,String userId) {
-		log.warn("유저 정보 수정 페이지 이동" + userId);
 		UserVO result = service.selectUserId(userId);
-		
-		// 이메일 가져오기 코드
-		String email = result.getUserEmail();
-		String saveEmail = null;
-		String saveDomain = null;	
-		String[] arr = email.split("@");
-		for (int i = 0; i < arr.length; i++) {
-			log.info("문자열 자르기잉이이인ㅋ : " + arr[i]);
-			saveEmail = arr[0];
-			saveDomain = arr[1];
-		}
-		log.info("이메일 : " + saveEmail);
-		log.info("도메인 : " + saveDomain);
-		
-		model.addAttribute("saveEmail", saveEmail);
-		model.addAttribute("saveDomain", saveDomain);
-		
 		model.addAttribute("result", result);
 		log.info("마이페이지 수정 : " + result.getUserId());
 		
-		return "/myPage/myPageUpdate";
+		return "/myPage/myPage";
 	}
 	
 	// 유저 아이콘 페이지 이동
@@ -233,42 +197,10 @@ public class UserController {
 	
 	@PostMapping("/goChangeIcon")
 		public String goChangeIcon(Model model, String userId) {
-		UserVO result = service.selectUserId(userId);
-		model.addAttribute("result", result);
+		
 		return "/myPage/myPage";
 	}
 	
-	// 유저 정보 업데이트
-	@PostMapping("/updateUserInfo")
-		public String updateUserInfo(UserVO vo, Model model) {
-		log.warn("유저정보 업데이트 :" + vo.getUserGender());
-		log.warn("유저정보 업데이트 :" + vo.getUserPhonenumber());
-		service.updateUserInfo(vo);
-		
-		// 이메일 가져오기 코드
-		String email = vo.getUserEmail();
-		String saveEmail = null;
-		String saveDomain = null;	
-		String[] arr = email.split("@");
-		for (int i = 0; i < arr.length; i++) {
-			log.info("문자열 자르기잉이이인ㅋ : " + arr[i]);
-			saveEmail = arr[0];
-			saveDomain = arr[1];
-		}
-		log.info("이메일 : " + saveEmail);
-		log.info("도메인 : " + saveDomain);
-		
-		model.addAttribute("saveEmail", saveEmail);
-		model.addAttribute("saveDomain", saveDomain);
-		model.addAttribute("result", vo);
-		return "/myPage/myPageUpdate";
-	}
 	
-	// 유저 탈퇴
-	@GetMapping("deleteAccount")
-		public String deleteAccount(String userId) {
-		log.info("회원탈퇴 : " + userId);
-		service.deleteAccount(userId);
-		return "/main";
-	}
+	
 }

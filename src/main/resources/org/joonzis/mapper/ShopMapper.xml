@@ -4,46 +4,22 @@
 
 <mapper namespace="org.joonzis.mapper.ShopMapper">
 	<!-- 전체 책 리스트 조회 -->
-<select id="getBookList" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
-	<![CDATA[
-		SELECT bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount 
-		FROM (
-			SELECT ROWNUM rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount 
-			FROM (
-				SELECT * FROM tbl_book 
-				ORDER BY ]]>
-					<choose>
-						<when test="filterType == 'sellcount'">sellcount DESC</when>
-						<when test="filterType == 'avgrating'">avgRating DESC</when>
-						<when test="filterType == 'likecount'">likecount DESC</when>
-						<when test="filterType == 'maxbookprice'">bookPrice DESC</when>
-						<when test="filterType == 'minbookprice'">bookPrice ASC</when>
-						<otherwise>bno DESC</otherwise>
-					</choose>
-					<![CDATA[
-			)
-			WHERE ROWNUM <= #{pageNum} * #{amount}
-		)
-		WHERE rn > (#{pageNum} - 1) * #{amount}
-	]]>
-</select>
-
+	<select id="getBookList" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
+		<![CDATA[
+		select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating from
+		(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating from
+		(select * from tbl_book ORDER BY status desc)
+		where rownum <= #{pageNum} * #{amount})
+		where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
 	
 	<!-- 카테고리 별 책 리스트 조회 -->
 	<select id="getBookListGe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
 		<![CDATA[
-		select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
-		(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
-		(select * from tbl_book where gno = #{gener} ORDER BY ]]>
-					<choose>
-						<when test="filterType == 'sellcount'">sellcount DESC</when>
-						<when test="filterType == 'avgrating'">avgRating DESC</when>
-						<when test="filterType == 'likecount'">likecount DESC</when>
-						<when test="filterType == 'maxbookprice'">bookPrice DESC</when>
-						<when test="filterType == 'minbookprice'">bookPrice ASC</when>
-						<otherwise>status DESC</otherwise>
-					</choose>
-					<![CDATA[)
+		select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating from
+		(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating from
+		(select * from tbl_book where gno = #{gener} ORDER BY status desc)
 		where rownum <= #{pageNum} * #{amount})
 		where rn > (#{pageNum} - 1) * #{amount}
 		]]>
@@ -63,30 +39,12 @@
 	<select id="getTotalLikeByBno" parameterType="int" resultType="int">
 		select count(*) from tbl_blike where bno = #{bno}
 	</select>
-	<!-- 책 데이터 입력 -->
-	<insert id="insertShopBook" parameterType="org.joonzis.domain.BookVO">
-		insert into tbl_book values (SEQ_BOOK_BNO.nextval, #{gno}, #{title}, #{publisher}, #{writer}, #{shortText}, #{isbn}, #{bookPrice}, #{ordDate}, #{inventory}, #{bookcover}, 1, 0, 0, 0)
-	</insert>
+	
 	<!-- 단일 책 조회 -->
 	<select id="getBookOne" parameterType="int" resultType="org.joonzis.domain.BookVO">
 		select * from tbl_book where bno = #{bno}
 	</select>
 	
-	<select id="getBookContent" parameterType="int" resultType="String">
-		select content from tbl_bookcontent where bno = #{bno}
-	</select>
-	
-	<select id="getBookContentImg" parameterType="int" resultType="String">
-		select image from tbl_image where bno = #{bno}
-	</select>
-	<!-- 별점 평균 구하기 -->
-	<select id="selectAvgRating" parameterType="int" resultType="double">
-		select COALESCE(AVG(likescore), 0.0) from tbl_blike where bno = #{bno}
-	</select>
-	<!-- 별점 평균 업데이트 -->
-	<update id="updateAvgRating" parameterType="org.joonzis.domain.BookVO">
-		update tbl_book set avgrating = #{avgRating} where bno = #{bno}
-	</update>
 	<!-- 구매 리스트 저장(장바구니) -->
 	<insert id="buyList" parameterType="org.joonzis.domain.BookBuyListVO">
 		insert into tbl_order VALUES (#{bno}, #{mno}, #{count})
@@ -121,12 +79,8 @@
 	<select id="selectOrderDetailOdno" parameterType="int" resultType="int">
 		select max(odno) from tbl_order_detail where mno = #{mno}
 	</select>
-	<!-- 주문상세페이지 조회 ( by.odno ) -->
-	<select id="selectOrderDetailByOdno" parameterType="int" resultType="org.joonzis.domain.OrderDetailVO">
-		select * from tbl_order_detail where odno = #{odno}
-	</select>
 	<!-- 주문상세페이지 조회 ( by.mno ) -->
-	<select id="selectOrderDetailByMno" parameterType="int" resultType="org.joonzis.domain.OrderDetailVO">
+	<select id="selectOrderDetail" parameterType="int" resultType="org.joonzis.domain.OrderDetailVO">
 		select * from tbl_order_detail where mno = #{mno}
 	</select>
 	<!-- 주문한 책 데이터 저장 ( odno로 조회 가능 ) -->
@@ -137,12 +91,4 @@
 	<delete id="deleteCartAll" parameterType="int">
 		delete from tbl_order where mno = #{mno}
 	</delete>
-	<!-- 찜 리스트 추가 -->
-	<insert id="cuNext" parameterType="org.joonzis.domain.BookBuyListVO">
-		insert into tbl_bookcu values (#{mno}, #{bno})
-	</insert>
-	<!-- 찜 조회 -->
-	<select id="selectCuNext" parameterType="org.joonzis.domain.BookBuyListVO" resultType="int">
-		select count(*) from tbl_bookcu where bno = #{bno} and mno = #{mno}
-	</select>
 </mapper>

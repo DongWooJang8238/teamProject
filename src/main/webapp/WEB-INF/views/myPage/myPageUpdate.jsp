@@ -151,7 +151,7 @@
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<!-- Main content -->
-	<form method="post">
+	<form>
 		<div class="main-content">
 			<div class="header">
 				<h1
@@ -160,81 +160,78 @@
 			</div>
 
 			<div class="input-group">
-				<label for="username">아이디</label> 
-				<input type="text" id="userId" name="userId" value="${result.userId}" readonly>
+				<label for="username">아이디</label> <input type="text" id="userId"
+					name="userId" placeholder="아이디 입력" required>
+				<button class="btn btn-outline-secondary" type="button"
+					id="duplicateCkBtn" onclick="validateId()">중복확인</button>
+				<div class="invalid-feedback" id="mIdValidState"></div>
 			</div>
 
+
 			<div class="input-group">
-				<label for="userName">이름</label> <input type="text" id="userName" name="userName" value="${result.userName }" readonly>
+				<label for="userName">이름</label> <input type="text" id="userName"
+					name="userName" placeholder="이름 입력" required>
+				<div class="invalid-feedback" id="mUserNameValudState"></div>
 			</div>
-			
 
 			<div class="email-group">
 				<label for="userEmail">메일</label>
 				<div style="display: flex; align-items: center;">
-					<input type="email" id="userEmail" name="userEmail" value="${saveEmail }" class="email-input" required>@ 
-						<input list="emailOptions" id="emailDomain" placeholder="이메일을 선택하거나 입력하세요" value="${saveDomain }" >
-							<datalist id="emailOptions">
-								<option value="naver.com">
-								<option value="gmail.com">
-								<option value="daum.net">
-								<option value="nate.com">
-							</datalist>
+					<input type="userEmail" id="userEmail" name="userEmail"
+						placeholder="이메일 주소" class="email-input" required> @ <input
+						list="emailOptions" id="emailDomain"
+						placeholder="이메일을 선택하거나 입력하세요">
+					<datalist id="emailOptions">
+						<option value="naver.com">
+						<option value="gmail.com">
+						<option value="daum.net">
+						<option value="nate.com">
+					</datalist>
 				</div>
 			</div>
 
-			<div class="input-group">
-				<label for="userAddress">주소</label> <input type="text" id="userAddress"
-					name="userAddress" placeholder="주소 입력[선택]" value="${result.userAddress}" required>
-			</div>
-			
 
 			<div class="input-group">
-				<label for="userPhonenumber">전화번호</label> <input type="tel" id="userPhonenumber"
-					name="userPhonenumber" placeholder="전화번호 ( ' - ' 제외 )[선택]" maxlength="11" value="${result.userPhonenumber}" required>
+				<label for="address">주소</label> <input type="text" id="address"
+					name="address" placeholder="주소 입력" required>
 			</div>
-			
 
 			<div class="input-group">
-				<label for="userDate">생년월일</label> <input type="date"
-					id="userDate" name="userDate" value="${result.userDate}" required>
+				<label for="phone">전화번호</label> <input type="tel" id="phone"
+					name="phone" placeholder="전화번호 ( ' - ' 제외 )" maxlength="11"
+					required>
 			</div>
-			
-		    <div class="gender-group">
-                <label id="gender" gender="${result.userGender }">성별</label>
-                <input type="radio" id="userGender" name="userGender" value="man" checked="checked" required>
-                <label for="man">남</label>
-                <input type="radio" id="userGender" name="userGender" value="woman" required>
-                <label for="woman">여</label>
-            </div> 
-            
-			<button type="button" class="signup-btn" onclick="updateUserInfo(this.form)">수정하기</button>
+
+			<div class="input-group">
+				<label for="birthdate">생년월일</label> <input type="date"
+					id="birthdate" name="birthdate" required>
+			</div>
 			<div class="sidebar">
-			<h3>마이페이지</h3>
-			<ul>
-				<li><a href="#" onclick="toggleSubMenu('shopping-info')">쇼핑정보</a>
-					<ul id="shopping-info" class="sub-menu">
-						<li><a href="#">주문목록/배송조회</a></li>
-						<li><a href="#">취소/반품/교환 내역</a></li>
-					</ul></li>
-				<li><a href="#" onclick="toggleSubMenu('benefit-management')">혜택관리</a>
-					<ul id="benefit-management" class="sub-menu">
-						<li><a href="#">쿠폰</a></li>
-						<li><a href="#">적립금</a></li>
-					</ul></li>
-				<li><a href="userInfo" onclick="toggleSubMenu('member-info')">회원정보</a>
-					<ul id="member-info" class="sub-menu">
-						<li><a id="checkPage"
-							href="/User/checkPassword?userId=${result.userId }">회원정보 수정</a></li>
-						<li><a href="#">배송지 관리</a></li>
-					</ul></li>
-				<li><a href="#">나의 게시글</a></li>
-			</ul>
+				<h3>마이페이지</h3>
+				<ul>
+					<li><a href="#" onclick="toggleSubMenu('shopping-info')">쇼핑정보</a>
+						<ul id="shopping-info" class="sub-menu">
+							<li><a href="#">주문목록/배송조회</a></li>
+							<li><a href="#">취소/반품/교환 내역</a></li>
+						</ul></li>
+					<li><a href="#" onclick="toggleSubMenu('benefit-management')">혜택관리</a>
+						<ul id="benefit-management" class="sub-menu">
+							<li><a href="#">쿠폰</a></li>
+							<li><a href="#">적립금</a></li>
+						</ul></li>
+					<li><a href="#" onclick="toggleSubMenu('member-info')">회원정보</a>
+						<ul id="member-info" class="sub-menu">
+							<li><a href="#">회원정보 수정</a></li>
+							<li><a href="#">배송지 관리</a></li>
+						</ul></li>
+					<li><a href="#">나의 게시글</a></li>
+				</ul>
+			</div>
 		</div>
 	</form>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript" src="/resources/js/myPage/myPageUpdate.js"></script>
-<script type="text/javascript" src="/resources/js/myPage/sidebar.js"></script>
+<script type="text/javascript" src="/resources/js/myPage.js"></script>
+<script type="text/javascript" src="/resources/js/sidebar.js"></script>
 </html>

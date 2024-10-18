@@ -17,20 +17,10 @@ public interface ShopMapper {
 	public int getTotal();
 	// 전체 게시글 수
 	public int getTotalByGno(int gno);
-	// 책 평점 수 조회
+	// 책 평점 조회
 	public int getTotalLikeByBno(int bno);
-	// 책 데이터 인서트
-	public int insertShopBook(BookVO vo);
 	// 책 단일 데이터 조회
 	public BookVO getBookOne(int bno);
-	// 책 컨텐트 조회
-	public String getBookContent(int bno);
-	// 책 이미지 조회
-	public List<String> getBookContentImg(int bno);
-	// 책 평점 평균 조회
-	public double selectAvgRating(int bno);
-	// 책 평점 평균 업데이트
-	public int updateAvgRating(BookVO vo);
 	// 장바구니 담기
 	public int buyList(BookBuyListVO vo);
 	// 장바구니 카운트 조회
@@ -49,12 +39,4 @@ public interface ShopMapper {
 	public int insertOrderBookList(OrderBookListVO vo);
 	// 주문 완료 후 장바구니 데이터 삭제
 	public int deleteCartAll(int mno);
-	// 주문 상세 정보 조회 ( 상세 페이지 )
-	public OrderDetailVO selectOrderDetailByMno(int mno);
-	// 주문 상세 정보 조회 ( 결제 후 상세 페이지 )
-	public OrderDetailVO selectOrderDetailByOdno(int odno);
-	// 찜 리스트 추가
-	public int cuNext(BookBuyListVO bblvo);
-	// 찜 리스트 조회
-	public int selectCuNext(BookBuyListVO bblvo);
 }

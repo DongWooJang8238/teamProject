@@ -86,17 +86,6 @@ public class UserServiceImpl implements UserService {
 		return userMapper.updateIcon(vo);
 	}
 	
-	// 유저 정보 업데이트
-	@Override
-	public int updateUserInfo(UserVO vo) {
-		return userMapper.updateUserInfo(vo);
-	}
-	
-	// 유저 탈퇴
-	@Override
-	public int deleteAccount(String userId) {
-		return userMapper.deleteAccount(userId);
-	}
 	
 	
 	

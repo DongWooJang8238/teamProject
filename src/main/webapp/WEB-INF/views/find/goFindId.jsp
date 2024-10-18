@@ -126,6 +126,6 @@ body {
 			<button type="button" class="signup-btn" onclick="findPw()">비밀번호 찾기</button>
 		</form>
 	</div>
-<script type="text/javascript" src="/resources/js/find/goFindId.js"></script>
+<script type="text/javascript" src="/resources/js/goFindId.js"></script>
 </body>
 </html>

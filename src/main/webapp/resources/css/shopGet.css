@@ -9,11 +9,6 @@
     font-size: 2em;
     margin-bottom: 20px;
 }
-.product-short {
-    text-align: center;
-    font-size: 1em;
-    margin-bottom: 10px;
-}
 
 .product-info {
     display: flex;
@@ -97,14 +92,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* 말풍선 그림자 */
 }
 
-.action-buttons button {
-    cursor: pointer;
-}
-
-.quantity-control button {
-    cursor: pointer;
-}
-
 /* 별점 css */
 .stars { 
     display: inline-block;
@@ -132,44 +119,6 @@
     color: #FFD700; /* 노란색으로 평점에 맞는 만큼 표시 */
 }
 
-/* 별점 css */
-.ratings { 
-    display: inline-block;
-    font-size: 24px;
-}
-
-.ratings .rating {
-    display: inline-block; /* 별들을 나란히 표시 */
-    color: #FFF; /* 기본 흰색 */
-    text-shadow: 0 0 1px #000; /* 검은색 테두리 효과 */
-}
-
-/* 평점에 따라 별의 색상 변경 */
-.ratings[data-rating="0.0"] .rating,
-.ratings[data-rating="0.5"] .rating:nth-child(1),
-.ratings[data-rating="1.0"] .rating:nth-child(1),
-.ratings[data-rating="1.5"] .rating:nth-child(2),
-.ratings[data-rating="2.0"] .rating:nth-child(2),
-.ratings[data-rating="2.5"] .rating:nth-child(3),
-.ratings[data-rating="3.0"] .rating:nth-child(3),
-.ratings[data-rating="3.5"] .rating:nth-child(4),
-.ratings[data-rating="4.0"] .rating:nth-child(4),
-.ratings[data-rating="4.5"] .rating:nth-child(5),
-.ratings[data-rating="5.0"] .rating:nth-child(5) {
-    color: #FFD700; /* 노란색으로 평점에 맞는 만큼 표시 */
-}
-
-.rating {
-    cursor: pointer; /* 커서를 포인터로 변경 */
-}
-
-.rating:hover {
-    color: #FFD700; /* 마우스 오버 시 노란색 */
-}
-
-.rating:hover ~ .rating {
-    color: #FFF; /* 마우스 오버 시 오른쪽 별은 흰색 */
-}
 /* 리뷰(댓글) 영역 */
 .review-section {
     display: flex;
@@ -312,5 +261,3 @@
     font-weight: bold; /* 볼드 처리 */
     color: #333; /* 글자 색상 */
 }
-
-

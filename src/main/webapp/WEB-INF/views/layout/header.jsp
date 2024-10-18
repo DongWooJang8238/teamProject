@@ -37,11 +37,11 @@
 					<div class="subcategories" id="books" style="display: none;">
 						<div class="genre" id="genres">
 							<div onclick="shopListGo()">새책</div>
-							<div onclick="shopUsedList()">중고책</div>
+							<div onclick="alert('시로 이동!')">중고책</div>
 						</div>
 					</div>
 					<div class="category" onclick="toggleSubcategories('points')">포인트상점</div>
-					<div class="category" onclick="goBoard()">커뮤니티게시판</div>
+					<div class="category" onclick="toggleSubcategories('community')">커뮤니티게시판</div>
 					<div class="category" onclick="toggleSubcategories('writing')">집필게시판</div>
 					<div class="category" onclick="goGame()">게임</div>
 				</div>

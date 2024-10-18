@@ -140,5 +140,5 @@ body {
 		</form>
 	</div>
 </body>
-<script type="text/javascript" src="/resources/js/find/findId.js"></script>
+<script type="text/javascript" src="/resources/js/findId.js"></script>
 </html>

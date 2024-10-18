@@ -9,103 +9,73 @@
     <link rel="stylesheet" href="/resources/css/shopBuy.css">
 </head>
 <body>
-	<jsp:include page="../layout/header.jsp"></jsp:include>
+
     <div class="payment-container">
         <h1 class="page-title">결제 정보</h1>
 
-        <form action="#" method="POST" class="buyer-info-form">
-    <input type="hidden" id="mno" name="mno" value="${user.mno}"> <!-- 사용자 번호 -->
-
-    <!-- 상품 정보 섹션 -->
-    <section class="product-info-section">
-    <h2>주문 상품 정보</h2>
-    <ul class="product-list">
-        <!-- 상품 정보를 리스트로 출력 -->
-            <li class="product-details">
+        <!-- 상품 정보 섹션 -->
+        <section class="product-info-section">
+            <h2>주문 상품 정보</h2>
+            <div class="product-details">
                 <img src="${bvo.bookcover}" alt="상품 이미지" class="product-image">
                 <div class="product-description">
-                    <p><strong>상품명:</strong> ${bvo.title}</p>
-                    <p><strong>가격:</strong> ₩<span class="bookPrice" data-price="${bvo.bookPrice}">${bvo.bookPrice * count}</span></p>
-                    <p><strong>수량:</strong>
-                        <button type="button" class="minus">-</button>
-                        <span class="spanCount">${count}</span>
-                        <button type="button" class="plus">+</button>
-                    </p>
+                    <p><strong>상품명:</strong> ${bvo.title }</p>
+                    <p><strong>가격:</strong> ₩<span id="bookPrice" bookPrice="${bvo.bookPrice * count}">${bvo.bookPrice * count }</span></p>
+                    <p><strong>수량:</strong> ${count }</p>
                     <p><strong>배송비:</strong> 무료</p>
-                    <!-- 숨겨진 상품 번호 입력 필드 추가 -->
-                    <input type="hidden" name="bno" value="${bvo.bno}">
-                    <input type="hidden" name="count" value="${count}">
                 </div>
-            </li>
-    </ul>
-    <p><strong>총 결제 금액:</strong> ₩<span id="totalPrice"></span></p> <!-- 총 결제 금액 -->
-</section>
+            </div>
+        </section>
 
-    <!-- 구매자 정보 섹션 -->
-    <section class="buyer-info-section">
-        <h2>구매자 정보</h2>
-        <div class="form-group">
-            <label for="orderName">이름</label>
-            <input type="text" id="orderName" name="orderName" value="${uvo.userName}" required>
-        </div>
-        <div class="form-group">
-            <label for="orderPhone">전화번호</label>
-            <input type="tel" id="orderPhone" name="orderPhone" value="${uvo.userPhonenumber}" required>
-        </div>
-        <div class="form-group">
-            <label for="orderAddr">주소</label>
-            <input type="text" id="orderAddr" name="orderAddr" value="${uvo.userAddress}" required>
-        </div>
-        <div class="form-group">
-            <label for="userDeposit">계좌번호</label>
-            <input type="text" id="userDeposit" name="userDeposit" required>
-        </div>
-    </section>
+        <!-- 구매자 정보 섹션 -->
+        <section class="buyer-info-section">
+            <h2>구매자 정보</h2>
+            <form action="/payment/submit" method="POST" class="buyer-info-form">
+                <div class="form-group">
+                    <label for="buyerName">이름</label>
+                    <input type="text" id="buyerName" name="buyerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyerPhone">전화번호</label>
+                    <input type="tel" id="buyerPhone" name="buyerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyerEmail">이메일</label>
+                    <input type="email" id="buyerEmail" name="buyerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="buyerAddress">주소</label>
+                    <input type="text" id="buyerAddress" name="buyerAddress" required>
+                </div>
+            </form>
+        </section>
 
-    <!-- 결제 정보 섹션 -->
-    <section class="payment-info-section">
-    	<h2>포인트 할인</h2>
-    	<div class="form-group">
-    		<select name="point">
-    			<option value="0">0</option>
-    			<option value="100">100</option>
-    			<option value="200">200</option>
-    			<option value="300">300</option>
-    			<option value="400">400</option>
-    			<option value="500">500</option>
-    			<option value="600">600</option>
-    			<option value="700">700</option>
-    			<option value="800">800</option>
-    			<option value="900">900</option>
-    			<option value="1000">1000</option>
-    		</select>
-    	</div>
-        <h2>결제 방식</h2>
-        <div class="payment-methods">
-            <div class="form-group">
-                <input type="radio" id="cardPayment" name="paymentMethod" value="card" checked>
-                <label for="cardPayment">신용카드</label>
+        <!-- 결제 정보 섹션 -->
+        <section class="payment-info-section">
+            <h2>결제 방식</h2>
+            <div class="payment-methods">
+                <div class="form-group">
+                    <input type="radio" id="cardPayment" name="paymentMethod" value="card" checked>
+                    <label for="cardPayment">신용카드</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" id="bankTransfer" name="paymentMethod" value="bank">
+                    <label for="bankTransfer">계좌이체</label>
+                </div>
+                <div class="form-group">
+                    <input type="radio" id="kakaoPay" name="paymentMethod" value="kakaoPay">
+                    <label for="kakaoPay">카카오페이</label>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="radio" id="bankTransfer" name="paymentMethod" value="bank">
-                <label for="bankTransfer">계좌이체</label>
-            </div>
-            <div class="form-group">
-                <input type="radio" id="kakaoPay" name="paymentMethod" value="kakaoPay">
-                <label for="kakaoPay">카카오페이</label>
-            </div>
+        </section>
+		
+        <!-- 결제 버튼 ( 누르면 선택한 결제 방식의 최종 결제 페이지 이동 ) -->
+        <div class="payment-action">
+            <button type="submit" class="pay-button">결제하기</button>
+            <button type="submit" class="cancel-button">취소</button>
         </div>
-    </section>
-</form>
-    
-    <!-- 결제 버튼 ( 누르면 선택한 결제 방식의 최종 결제 페이지 이동 ) -->
-    <div class="payment-action">
-        <button class="pay-button">결제하기</button>
-        <button class="cancel-button">취소</button>
     </div>
 
-    </div>
-<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript" src="/resources/js/shop/shopBuyOne.js"></script>
+<script type="text/javascript" src="/resources/js/shopBuyOne.js"></script>
 </html>

@@ -133,5 +133,5 @@ body {
 		</form>
 	</div>
 </body>
-<script type="text/javascript" src="/resources/js/find/pwAuth.js"></script>
+<script type="text/javascript" src="/resources/js/pwAuth.js"></script>
 </html>
