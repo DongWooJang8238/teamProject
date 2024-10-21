@@ -19,8 +19,11 @@
 </select>
 
 <update id="gameDone" parameterType="int" >
-	UPDATE tbl_user SET userPoint = userPoint + 15 WHERE mno = #{mno}
+	UPDATE tbl_user SET userPoint = userPoint + 300 WHERE mno = #{mno}
 
+</update>
+<update id="updatePGdate" parameterType="int">
+	update gameuser set pgdate = sysdate where mno = #{mno}
 </update>
 <select id = "userCheck" parameterType="int" resultType="int">
 	SELECT NVL(COUNT(*), 0) FROM gameuser WHERE mno = #{mno}

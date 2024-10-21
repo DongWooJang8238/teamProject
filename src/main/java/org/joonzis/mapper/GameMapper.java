@@ -11,5 +11,6 @@ public interface GameMapper {
 	public int userCheck(int mno);
 	public String pointGetCheck(int mno);
 	public int insertUser(int mno);
+	public int updatePGdate(int mno);
 
 }

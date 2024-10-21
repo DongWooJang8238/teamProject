@@ -7,5 +7,6 @@ import org.joonzis.domain.BoardAttachVO;
 public interface BoardAttachMapper {
 	public int register(BoardAttachVO vo);
 	public int remove(String uuid);
+	public int deleteBoard(int boardno);
 	public List<BoardAttachVO> findByBoardno(int boardno);
 }

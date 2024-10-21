@@ -16,8 +16,9 @@
 		SELECT COUNT(*) FROM table_likes WHERE boardno = #{boardno}
 	</select>
 
-	<select id="isLiked" parameterType="org.joonzis.domain.BoardLikeVO" resultType="int">
-		SELECT COUNT(*) FROM table_likes WHERE boardno = #{boardno} AND mno =
-		#{mno}
-	</select>
+	<select id="isLiked" resultType="boolean" parameterType="map">
+    SELECT COUNT(*) > 0
+    FROM board_likes
+    WHERE boardno = #{boardno} AND mno = #{mno}
+</select>
 </mapper>

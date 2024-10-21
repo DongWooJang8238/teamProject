@@ -7,6 +7,7 @@ import org.joonzis.domain.ReviewVO;
 import org.joonzis.mapper.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.log4j.Log4j;
 
@@ -43,5 +44,17 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<ReviewVO> getReviewList(int bno) {
 		log.warn("서비스 리뷰목록.." + bno);
 		return mapper.getReviewList(bno);
+	}
+	
+	@Transactional
+	@Override
+	public int deleteReview(ReviewVO rvo) {
+		log.warn("서비스 리뷰삭제..." + rvo);
+		
+		int result = mapper.deleteLikeCount(rvo);
+		
+		log.warn("좋아요 삭제 결과 : " + result);
+		
+		return mapper.deleteReview(rvo);
 	}
 }

@@ -79,6 +79,7 @@ public class BoardController {
 			return "redirect:/board/list";
 		}
 		
+		
 		// 게시글 등록
 		@PostMapping("/register")
 		public String register(BoardVO vo, RedirectAttributes rttr) {

@@ -7,6 +7,7 @@ import org.joonzis.domain.BookVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
+import org.joonzis.domain.SelectDTO;
 
 public interface ShopService {
 	public List<BookVO> getBookList(Criteria cri);
@@ -33,7 +34,7 @@ public interface ShopService {
 
 	public int deleteCart(int bno);
 
-	public int insertOrderDetail(OrderDetailVO vo);
+	public int insertOrderDetail(OrderDetailVO vo, int check);
 
 	public int insertOrderBookList(OrderBookListVO vo);
 
@@ -46,4 +47,6 @@ public interface ShopService {
 	public int cuNext(BookBuyListVO bblvo);
 
 	public int selectCuNext(BookBuyListVO bblvo);
+	
+	public List<BookVO> getBookListSelect(SelectDTO sel);
 }

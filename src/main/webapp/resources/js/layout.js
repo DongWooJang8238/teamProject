@@ -60,7 +60,7 @@ function goToCart() {
 	location.href = '/shop/cartListBuy?mno=' + 1;
 }
 function goBoard() {
-	location.href = '/board/list?pageNum=1&amount=5';
+	location.href = '/board/list?pageNum=1&amount=10';
 }
 function goGame(){
 	location.href = '/game/entrance?mno='+1;

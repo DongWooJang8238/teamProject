@@ -18,4 +18,7 @@ public interface ReviewService {
 		
 		// 댓글 리스트 가져오기
 		public List<ReviewVO> getReviewList(int bno);
+		
+		// 리뷰 삭제
+		public int deleteReview(ReviewVO rvo);
 }
