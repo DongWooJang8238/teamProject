@@ -29,25 +29,25 @@
 </select>
 
 	
-	<!-- 카테고리 별 책 리스트 조회 -->
-	<select id="getBookListGe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
-		<![CDATA[
-		select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
-		(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
-		(select * from tbl_book where gno = #{gener} ORDER BY ]]>
-					<choose>
-						<when test="filterType == 'sellcount'">sellcount DESC</when>
-						<when test="filterType == 'avgrating'">avgRating DESC</when>
-						<when test="filterType == 'likecount'">likecount DESC</when>
-						<when test="filterType == 'maxbookprice'">bookPrice DESC</when>
-						<when test="filterType == 'minbookprice'">bookPrice ASC</when>
-						<otherwise>status DESC</otherwise>
-					</choose>
-					<![CDATA[)
-		where rownum <= #{pageNum} * #{amount})
-		where rn > (#{pageNum} - 1) * #{amount}
-		]]>
-	</select>
+		<!-- 카테고리 별 책 리스트 조회 -->
+		<select id="getBookListGe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
+			<![CDATA[
+			select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
+			(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
+			(select * from tbl_book where gno = #{gener} ORDER BY ]]>
+						<choose>
+							<when test="filterType == 'sellcount'">sellcount DESC</when>
+							<when test="filterType == 'avgrating'">avgRating DESC</when>
+							<when test="filterType == 'likecount'">likecount DESC</when>
+							<when test="filterType == 'maxbookprice'">bookPrice DESC</when>
+							<when test="filterType == 'minbookprice'">bookPrice ASC</when>
+							<otherwise>status DESC</otherwise>
+						</choose>
+						<![CDATA[)
+			where rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum} - 1) * #{amount}
+			]]>
+		</select>
 	
 	<!-- 검색 내용 조회 -->
 	<select id="getBookListSelect" parameterType="org.joonzis.domain.SelectDTO" resultType="org.joonzis.domain.BookVO">
