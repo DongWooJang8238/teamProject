@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+var message = document.querySelector('.alertMessage').value;
+if (message) {
+    alert(message);
+}
 
 
 

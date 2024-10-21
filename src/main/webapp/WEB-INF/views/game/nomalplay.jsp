@@ -43,18 +43,30 @@
             padding: 10px 20px; /* 버튼 패딩 증가 */
             cursor: pointer; /* 마우스 커서 변경 */
         }
+        #backButton {
+            bottom: 20px;
+            right: 0;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-	 <h1>게임 모드: easy</h1>
+	 <h1>게임 모드: nomal</h1>
     <h2>장르: ${gameJenre}</h2>
 
-<input type="hidden" class="userMno" value="${mno}" />
+	<input type="hidden" class="userMno" value="${mno}" />
+
+    
 	<div id="questContainer">
         <c:forEach var="gvo" items="${questList}">
             <div class="quest" style="display:none;">
-                <h3>Quest: ${gvo.gameQuest}</h3>
+                <h3> Quest: ${gvo.gameQuest}</h3>
                 <input type="hidden" class="correctAnswer" value="${gvo.gameAnswer}" />
             </div>
         </c:forEach>
@@ -64,7 +76,11 @@
         <input type="text" id="answerInput" placeholder="정답 입력" />
         <button type="button" id="submitButton" onclick="checkAnswer()">정답 제출</button>
     </div>
-	
+    
+	<div>	
+   		<button id="backButton" class="backButton"  onclick="goBack()">뒤로가기</button>
+	 </div>
+	 
 <jsp:include page="../layout/footer.jsp"></jsp:include>
 
 		<script type="text/javascript" src="/resources/js/game/nomalplay.js"></script>
