@@ -93,84 +93,55 @@ function cardPay() {
 //	alert('mno = ' + mno);
 	alert('뭔가신용카드결제');
 	// 결제 완료 후 페이지 이동
-	if(confirm('[결제 완료] 결제 상세 페이지로 이동하시겠습니까? ( 거절 시 상품목록으로 이동 )')){
-		const listData = [];
-		// 상품 리스트 데이터 수집
-		document.querySelectorAll('.product-details').forEach(product => {
-			const bno = product.querySelector('input[name="bno"]').value;
-			const count = product.querySelector('input[name="count"]').value;
-			listData.push({ "bno" : bno, "count" : count});
-		});
-		const orderData = {
-			    mno: mno,
-			    totalPrice: document.querySelector('#totalPrice').innerHTML,
-			    orderName: document.getElementById('orderName').value,
-			    orderPhone: document.getElementById('orderPhone').value,
-			    orderAddr: document.getElementById('orderAddr').value,
-			    point: document.querySelector('select[name="point"]').value,
-			    userDeposit: document.getElementById('userDeposit').value,
-			    list: listData // 여기에 상품 리스트 데이터 추가
-			};
-
-
-			// 데이터를 JSON으로 변환 후 전송
-			fetch('/shop/buySuccess', {
-			    method: 'POST',
-			    headers: {
-			        'Content-Type': 'application/json',
-			    },
-			    body: JSON.stringify(orderData),
-			})
-			.then(response => response.text())
-			.then(data => {
-				console.log("비동기 결과 : " + data);
-				if(data === 'success'){
-					location.href = "/order/orderDetail?mno=" + mno;
-				}else {
-					alert('실패데스');
-				}
-			})
-			.catch(error => console.error('Error:', error));
-
+	const listData = [];
+	// 상품 리스트 데이터 수집
+	document.querySelectorAll('.product-details').forEach(product => {
+		const bno = product.querySelector('input[name="bno"]').value;
+		const count = product.querySelector('input[name="count"]').value;
+		listData.push({ "bno" : bno, "count" : count});
+	});
+	const orderData = {
+		    mno: mno,
+		    totalPrice: document.querySelector('#totalPrice').innerHTML,
+		    orderName: document.getElementById('orderName').value,
+		    orderPhone: document.getElementById('orderPhone').value,
+		    orderAddr: document.getElementById('orderAddr').value,
+		    point: document.querySelector('select[name="point"]').value,
+		    userDeposit: document.getElementById('userDeposit').value,
+		    list: listData // 여기에 상품 리스트 데이터 추가
+		};
+	
+	const userCheck = document.querySelector('input[name="userCheck"]');
+	let check;
+	if(userCheck.checked){
+		check = 1;
+		console.log(check);
 	}else {
-		const listData = [];
-		// 상품 리스트 데이터 수집
-		document.querySelectorAll('.product-details').forEach(product => {
-			const bno = product.querySelector('input[name="bno"]').value;
-			const count = product.querySelector('input[name="count"]').value;
-			listData.push({ "bno" : bno, "count" : count});
-		});
-		const orderData = {
-			    mno: mno,
-			    totalPrice: document.querySelector('#totalPrice').innerHTML,
-			    orderName: document.getElementById('orderName').value,
-			    orderPhone: document.getElementById('orderPhone').value,
-			    orderAddr: document.getElementById('orderAddr').value,
-			    point: document.querySelector('select[name="point"]').value,
-			    userDeposit: document.getElementById('userDeposit').value,
-			    list: listData // 여기에 상품 리스트 데이터 추가
-			};
-
-
-			// 데이터를 JSON으로 변환 후 전송
-			fetch('/shop/buySuccess', {
-			    method: 'POST',
-			    headers: {
-			        'Content-Type': 'application/json',
-			    },
-			    body: JSON.stringify(orderData),
-			})
-			.then(response => response.text())
-			.then(data => {
-				console.log("비동기 결과 : " + data);
-				if(data === 'success'){
-					location.href = "/shop/list";
-				}else {
-					alert('실패데스');
-				}
-			})
-			.catch(error => console.error('Error:', error));
+		check = 0;
+		console.log(check);
 	}
+		// 데이터를 JSON으로 변환 후 전송
+		fetch(`/shop/buySuccess/${check}`, {
+		    method: 'POST',
+		    headers: {
+		        'Content-Type': 'application/json',
+		    },
+		    body: JSON.stringify(orderData),
+		})
+		.then(response => response.text())
+		.then(data => {
+			console.log("비동기 결과 : " + data);
+			if(data === 'success'){
+				if(confirm('상품 상세 페이지로 이동하시겠습니까? ( 거절 시 상품 목록으로 이동 )')){
+					location.href = "/order/orderDetail?mno=" + mno
+				}else {
+					location.href = "/shop/list";
+				}
+			}else {
+				alert('실패데스');
+			}
+		})
+		.catch(error => console.error('Error:', error));
 }
 // 카카오페이 결제 api 관련
 //document.querySelector(".btn-pay-ready").addEventListener('click', a => {

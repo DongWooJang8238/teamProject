@@ -86,7 +86,7 @@ public class GameController {
         }
         
         
-		if (userCheck == 0) {
+		if(userCheck ==0) {
 			gameservice.insertUser(mno);
 
 			result = gameservice.gameDone(mno);

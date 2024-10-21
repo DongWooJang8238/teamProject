@@ -43,9 +43,19 @@ document.querySelectorAll('button').forEach(btn => {
 				}
 			}
 		}else if(btn.id === 'goTop'){
-			window.scrollTo(0,0);
+			console.log('123');
+			window.scrollTo({
+		        top: 0,  // Scroll to the top
+		        behavior: 'smooth'  // Smooth scrolling
+		    });
+//			document.documentElement.scrollTop = 0;  // For modern browsers
+//		    document.body.scrollTop = 0;
 		}else if(btn.id === 'gobottom'){
-			window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+//			document.body.scrollTop = document.body.scrollHeight;
+			window.scrollTo({
+		        top: document.documentElement.scrollHeight,  // Scroll to the bottom
+		        behavior: 'smooth'  // Smooth scrolling
+		    });
 		}
 	});
 });

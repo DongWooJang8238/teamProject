@@ -7,7 +7,9 @@ import org.joonzis.domain.BookVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
+import org.joonzis.domain.UserVO;
 import org.joonzis.mapper.ShopMapper;
+import org.joonzis.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,7 @@ public class ShopServiceImpl implements ShopService {
 	    	log.warn("서비스 책 평점 조회.." + vo.getBno());
 	    	vo.setLikeCount(mapper.getTotalLikeByBno(vo.getBno()));
 	    	log.warn("서비스 책 평점 조회 결과.." + vo.getLikeCount());
+	    	vo.setAvgRating(mapper.selectAvgRating(vo.getBno()));
 	    });
 	    return list;
 	}
@@ -126,12 +129,27 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Transactional
 	@Override
-	public int insertOrderDetail(OrderDetailVO vo) {
+	public int insertOrderDetail(OrderDetailVO vo, int check) {
 		log.warn("서비스 인서트 상세주문" + vo);
+		// 상세 주문 테이블에 데이터 저장
 		int result = mapper.insertOrderDetail(vo);
 		log.warn("서비스 인서트 상세주문 결과 .. " + result);
+		
+		// 유저가 데이터 저장 눌렀으면 유저 데이터 저장
+		log.warn("체크체크체크체크" + check);
+		if(check == 1) {
+			// 유저 vo에 담아서 update
+			UserVO uservo = new UserVO();
+			uservo.setMno(vo.getMno());
+			uservo.setUserAddress(vo.getOrderAddr());
+			uservo.setUserPhonenumber(vo.getOrderPhone());
+			
+			int updateResult = mapper.checkUserUpdate(uservo);
+			log.warn("유저정보 업데이트 결과 : " + updateResult);
+		}
 		log.warn("서비스 장바구니 삭제 mno .. " + vo.getMno());
 		
+		// 장바구니에 담긴 데이터 삭제
 		int deleteCart = mapper.deleteCartAll(vo.getMno());
 		log.warn("서비스 장바구니 삭제 결과.." + deleteCart);
 		return result;

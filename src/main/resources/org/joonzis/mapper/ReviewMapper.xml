@@ -26,4 +26,14 @@
 	<select id="getReviewList" parameterType="int" resultType="org.joonzis.domain.ReviewVO">
 		select * from tbl_review where bno = #{bno} order by reno desc
 	</select>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="org.joonzis.domain.ReviewVO">
+		delete from tbl_review where bno = #{bno} and mno = #{mno}
+	</delete>
+	
+	<!-- 책 좋아요 수 삭제 -->
+	<delete id="deleteLikeCount" parameterType="org.joonzis.domain.ReviewVO">
+		delete from tbl_blike where bno = #{bno} and mno = #{mno}
+	</delete>
 </mapper>
