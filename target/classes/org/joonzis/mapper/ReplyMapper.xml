@@ -17,6 +17,10 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM table_comments where replyno = #{replyno}
 	</delete>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM table_comments where boardno = #{boardno}
+	</delete>
+	
 	<update id="update" parameterType="org.joonzis.domain.ReplyVO">
 		UPDATE table_comments set reply = #{reply}, updatedate = sysdate where replyno = #{replyno}
 	</update>

@@ -25,6 +25,28 @@ document.querySelectorAll("tbody a").forEach( a => {
 	});
 });
 
+//카테고리 클릭 이벤트 - 조회
+document.querySelectorAll('.sidebar a').forEach(a => {
+	a.addEventListener('click', e => {
+		e.preventDefault();
+		
+		gener = a.getAttribute('href');
+		filterType = a.getAttribute('filterType');
+		if(gener === null){
+			gener = new URLSearchParams(location.search).get('gener');
+		}
+		if(filterType === null){
+			filterType = new URLSearchParams(location.search).get('filterType');
+		}
+		setStorageData(pageNum, amount, gener, filterType);
+		
+		let sendData = `pageNum=1&amount=${amount}&gener=${gener}&filterType=${filterType}`;
+		console.log(sendData);
+		
+		location.href = `/board/list?${sendData}`;
+	});
+});
+
 function setStorageData(pageNum, amount){
 	let pageData = {
 		pageNum : pageNum,

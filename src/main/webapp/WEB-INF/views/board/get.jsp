@@ -15,12 +15,8 @@
 	<div class="panel-body">
 		<form method="POST">
 			<table>
-				<tbody>
-					<tr>
-						<th>글 번호</th>
-						<td><input type="text" name="boardno" value="${vo.boardno}"
-							readonly></td>
-					</tr>
+				<tbody><input type="hidden" name="boardno" value="${vo.boardno}"
+							readonly>
 					<tr>
 						<th>제목</th>
 						<td><input type="text" name="title" value="${vo.title }"
@@ -51,12 +47,11 @@
       </div>
    </div>
 	</div>
-	<!-- 
 	<div id="like-section">
         <button id="like-btn" data-boardno="${boardno}" data-mno="${mno}">
             좋아요
         </button>
-        <span id="like-count">${likeCount}</span> -->
+        <span id="like-count">${likeCount}</span>
     </div>
 		<div class="panel-body-btns">
 			<button type="button" class="btn btn-sec" id="modifyBtn">수정</button>			
@@ -138,16 +133,7 @@
 							</p>
 						</div>
 					</li>
-					<li>
-						<div>
-							<div>
-								<span class="modal-font">등록 날짜</span>
-							</div>
-							<p>
-								<input type="text" name="modalreplydate">
-							</p>
-						</div>
-					</li>
+						<input type="hidden" name="modalreplydate">
 				</ul>
 			</div>
 			<div class="modal-footer">
