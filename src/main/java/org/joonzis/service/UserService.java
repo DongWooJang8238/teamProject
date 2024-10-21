@@ -42,4 +42,5 @@ public interface UserService {
 	
 	// 유저 탈퇴
 	public int deleteAccount(String userId);
+	
 }

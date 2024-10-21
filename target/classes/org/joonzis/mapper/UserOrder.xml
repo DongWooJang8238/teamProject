@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mno로 유저 구매 목록 -->
+<mapper namespace="org.joonzis.mapper.UserOrderMapper">
+	<select id="userOrderSelect" parameterType="int" resultType="org.joonzis.domain.UserOrderVO">
+		SELECT
+		u.mno,
+		o.odno,
+		o.orderaddr,
+		o.orderphone,
+		o.totalprice,
+		o.orderdate,
+		o.orderstatus,
+		b.bno,
+		b.count
+		FROM
+		tbl_user u,
+		tbl_order_detail o,
+		tbl_odno_bno b
+		WHERE u.mno = o.mno
+		AND o.odno = b.odno
+		AND u.mno = #{mno}
+	</select>
+
+
+</mapper>

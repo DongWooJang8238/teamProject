@@ -1,12 +1,15 @@
 package org.joonzis.controller;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.print.attribute.standard.Severity;
 
+import org.joonzis.domain.UserOrderVO;
 import org.joonzis.domain.UserVO;
+import org.joonzis.service.UserOrderService;
 import org.joonzis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private UserOrderService orderService;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -58,7 +64,7 @@ public class UserController {
 	@PostMapping("/goLogin")
 	public String goLogin(UserVO vo, Model model) {
 		log.info("Controller 로그인 성공 : " + vo);
-		model.addAttribute("vo", vo.getUserId());
+		model.addAttribute("vo", service.selectUserId(vo.getUserId()));
 		return "/main";
 	}
 	
@@ -110,15 +116,14 @@ public class UserController {
 		return "/main";
 	}
 	
-	// 마이페이지 이동 - 아이디 검색
+	// 마이페이지 이동 
 	@GetMapping("/myPage")
-		public String myPage(Model model, String userId) {
-		log.info("------------------" + userId);
-		UserVO result = service.selectUserId(userId);
+		public String myPage(Model model, UserVO vo) {
+		
+		UserVO result = service.userSelectOne(vo.getMno());
 		
 		// 이름 암호화 처리
 		String name = result.getUserName();
-		
 		
 		if(name.length() == 2) {
 			name = name.charAt(0) + "*";
@@ -241,10 +246,12 @@ public class UserController {
 	// 유저 정보 업데이트
 	@PostMapping("/updateUserInfo")
 		public String updateUserInfo(UserVO vo, Model model) {
+		
+		log.warn("유저 정보 업데" + vo.getUserDate());
 		log.warn("유저정보 업데이트 :" + vo.getUserGender());
 		log.warn("유저정보 업데이트 :" + vo.getUserPhonenumber());
-		service.updateUserInfo(vo);
-		
+		int result = service.updateUserInfo(vo);
+		log.warn("dsadasdsadasdadwadwad" + result);
 		// 이메일 가져오기 코드
 		String email = vo.getUserEmail();
 		String saveEmail = null;
@@ -270,5 +277,23 @@ public class UserController {
 		log.info("회원탈퇴 : " + userId);
 		service.deleteAccount(userId);
 		return "/main";
+	}
+	
+		@GetMapping("OrderSelect")
+		public String userOrderSelect(Model model, UserVO vo) {
+		log.info("vo@" + vo);
+		log.info("mno컨트룰러 : " + vo.getMno());
+		List<UserOrderVO> list = orderService.userOrderSelect(vo.getMno());
+		list.forEach(uvo -> {
+			log.warn("1 : " + uvo.getBno());
+			log.warn("2 : " + uvo.getCount());
+			log.warn("3 : " + uvo.getOrderAddr());
+			log.warn("4 : " + uvo.getOrderStatus());
+			log.warn("5 : " + uvo.getOrderPhone());
+			log.warn("6 : " + uvo.getOrderDate());
+			log.warn("7 : " + uvo.getTotalPrice());
+		});
+			model.addAttribute("vo",list);
+			return "/myPage/myOrder";
 	}
 }

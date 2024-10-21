@@ -12,13 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserVO {
-	private int mno, userPoint;
-	private String userName, userId, 
-	userPw, userPhonenumber,userAddress, 
-	userEmail, userGender, 
-	userRole, nickName, userIcon;
+public class UserOrderVO {
+	private int mno, odno, bno, totalPrice, count;
+	private String orderAddr, orderPhone, orderStatus;
 	
-	private Date userDate, registerDate;
+	private Date orderDate;
 
 }

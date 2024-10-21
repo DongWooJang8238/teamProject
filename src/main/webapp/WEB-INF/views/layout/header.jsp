@@ -24,7 +24,7 @@
 					<button type="button" id="myPage">마이페이지</button>
 					<button id="search" onclick="toggleCart()">🔍</button>
 					<button id="cart" onclick="goToCart()">🛒</button>
-					<input type="hidden" id="userId" name="userId" value="${vo }">
+					<input type="hidden" id="mno" name="mno" value="${vo.mno }">
 				</div>
 			</div>
 		</header>

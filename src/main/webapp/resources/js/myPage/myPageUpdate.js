@@ -32,13 +32,13 @@ function updateUserInfo(form) {
 	
 	form.userEmail.value = form.userEmail.value + '@' + form.emailDomain.value;
 	
-//	let formData = new FormData(form);
-//	console.log(form.userId.value);
-//	console.log(form.userGender.value);
-//	console.log(form.userAddress.value);
-//	console.log(form.userDate.value);
-//	console.log(form.userPhonenumber.value);
-//	console.log(form.userEmail.value);
+	let formData = new FormData(form);
+	console.log(form.userId.value);
+	console.log(form.userGender.value);
+	console.log(form.userAddress.value);
+	console.log(form.userDate.value);
+	console.log(form.userPhonenumber.value);
+	console.log(form.userEmail.value);
 	console.log("변경완료");
 	form.action = "/User/updateUserInfo";
 	form.submit();
