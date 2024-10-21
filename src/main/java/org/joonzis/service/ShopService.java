@@ -33,7 +33,7 @@ public interface ShopService {
 
 	public int deleteCart(int bno);
 
-	public int insertOrderDetail(OrderDetailVO vo);
+	public int insertOrderDetail(OrderDetailVO vo, int check);
 
 	public int insertOrderBookList(OrderBookListVO vo);
 

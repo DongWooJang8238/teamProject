@@ -21,4 +21,10 @@ public interface ReviewMapper {
 	
 	// 리뷰 리스트 가져오기
 	public List<ReviewVO> getReviewList(int bno);
+	
+	// 리뷰 삭제
+	public int deleteReview(ReviewVO rvo);
+	
+	// 리뷰 삭제 시 좋아요 카운트 삭제
+	public int deleteLikeCount(ReviewVO rvo);
 }
