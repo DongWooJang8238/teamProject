@@ -49,6 +49,15 @@
 		]]>
 	</select>
 	
+	<!-- 검색 내용 조회 -->
+	<select id="getBookListSelect" parameterType="org.joonzis.domain.SelectDTO" resultType="org.joonzis.domain.BookVO">
+		select * from tbl_book where 
+		<choose>
+			<when test="selectOption == 'title'">title</when>
+			<when test="selectOption == 'writer'">writer</when>
+		</choose>
+		like #{selectValue}
+	</select>
 	<!-- 전체 책 개수 조회 -->
 	<select id="getTotal" resultType="int">
 		 select count(*) from tbl_book

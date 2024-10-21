@@ -10,6 +10,7 @@ import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
 import org.joonzis.domain.PageDTO;
+import org.joonzis.domain.SelectDTO;
 import org.joonzis.domain.UserVO;
 import org.joonzis.service.ShopService;
 import org.joonzis.service.UserService;
@@ -40,17 +41,21 @@ public class ShopController {
 	@Autowired
 	private UserService uservice;
 	
-//	// 쇼핑 리스트 이동
-//	@GetMapping("/list")
-//	public String list(Model model) {
-//		log.info("쇼핑 리스트 목록..");
-//
-//		model.addAttribute("list", service.getBookList());
-//		
-//		log.info("쇼핑 리스트 결과.. : " + model);
-//		
-//		return "/shop/shopList";
-//	}
+	// 쇼핑 리스트 이동
+	@GetMapping("/listCe")
+	public String list(Model model, int[] checkCategorys) {
+		for (int i = 0; i < checkCategorys.length; i++) {
+			log.warn(checkCategorys);
+		}
+		
+		log.info("쇼핑 리스트 목록..");
+
+		model.addAttribute("list", service.getBookList());
+		
+		log.info("쇼핑 리스트 결과.. : " + model);
+		
+		return "/shop/shopList";
+	}
 	
 	// 쇼핑 리스트 이동 ( 페이징 / 카테고리 선택 )
 	@GetMapping("/list")
@@ -90,6 +95,17 @@ public class ShopController {
 		return "/shop/shopList";
 	}
 	
+	// 쇼핑 리스트 이동 ( 검색 )
+	@GetMapping("/listSelect")
+	public String listSelect(String selectOption, String selectValue, Model model) {
+		selectValue = "%" + selectValue + "%";
+		log.warn("검색 옵션 : " + selectOption);
+		log.warn("검색 내용 : " + selectValue);
+		SelectDTO sel = new SelectDTO(selectOption, selectValue);
+		
+	 	model.addAttribute("list", service.getBookListSelect(sel));
+		return "/shop/shopList";
+	}
 	@GetMapping("/goInsert")
 	public String shopGoInsert() {
 		log.warn("인서트 드가좌..");
