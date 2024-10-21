@@ -84,8 +84,6 @@ public class GameController {
             e.printStackTrace();
         }
 		
-		
-        
 		if(userCheck ==0) {
 			gameservice.insertUser(mno);
 			

@@ -161,12 +161,26 @@ function reviewLoad() {
 			  msg += `</div>`;
 			  msg += `<p>${rvo.reviewContent}</p>`;
 			  msg += `<img src="${rvo.reviewImage}" alt="예시 이미지" class="comment-image" style="max-width: 200px;" />`;
+			  msg += `<button onclick="deleteReview(${rvo.bno}, ${rvo.mno})">삭제</button>`;
 			  msg += `</div>`;
 			  msg += `</li>`;
 		  });
 		  
 		  replyUL.innerHTML = msg;
 		  
+		  applyStarRatings();
+	  })
+	  .catch(error => console.error('Error:', error));
+}
+
+// 리뷰 삭제
+function deleteReview(rbno, rmno) {
+	fetch(`/review/deleteReview/${rbno}/${rmno}`)
+	  .then(response => response.text()) // 응답을 JSON 형식으로 파싱
+	  .then(data => {
+		  console.log(data);
+		  // 리뷰 불러오기 로직
+		  reviewLoad();
 		  applyStarRatings();
 	  })
 	  .catch(error => console.error('Error:', error));

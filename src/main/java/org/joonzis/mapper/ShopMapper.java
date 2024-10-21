@@ -7,6 +7,7 @@ import org.joonzis.domain.BookVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
+import org.joonzis.domain.UserVO;
 
 public interface ShopMapper {
 	// 책 목록 리스트
@@ -57,4 +58,6 @@ public interface ShopMapper {
 	public int cuNext(BookBuyListVO bblvo);
 	// 찜 리스트 조회
 	public int selectCuNext(BookBuyListVO bblvo);
+	// 유저 정보 변경 ( check 선택 시 )
+	public int checkUserUpdate(UserVO uservo);
 }

@@ -67,7 +67,7 @@ public class ShopUploadController {
 		
 		log.info("upload Async post...");
 		
-		String uploadFolder = "C:\\dev\\workspace\\workSpace_spring\\project_paperGround\\src\\main\\webapp\\resources\\images";
+		String uploadFolder = "C:\\Users\\sdedu\\Desktop\\project_paperGround\\src\\main\\webapp\\resources\\images";
 		
 		// make folder --------------
 		File uploadPath = new File(uploadFolder);

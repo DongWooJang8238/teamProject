@@ -13,26 +13,26 @@
 	<jsp:include page="../layout/header.jsp" />
 
 	<div class="get-container">
-		<h1 class="product-name">${vo.title}</h1>
+		<h1 class="product-name">${bvo.title}</h1>
 		<div class="product-info">
 			<div class="product-image">
-				<img src="${vo.bookcover}" alt="책 표지">
+				<img src="${bvo.bookcover}" alt="책 표지">
 			</div>
 			<div class="product-details">
-				<p>작가: ${vo.writer}</p>
-				<p>출판사: ${vo.publisher}</p>
-				<p>ISBN: ${vo.isbn}</p>
-				<p>출판일: ${vo.ordDate}</p>
-				<div class="stars" data-rating="${vo.avgRating}">
+				<p>작가: ${bvo.writer}</p>
+				<p>출판사: ${bvo.publisher}</p>
+				<p>ISBN: ${bvo.isbn}</p>
+				<p>출판일: ${bvo.ordDate}</p>
+				<div class="stars" data-rating="${bvo.avgRating}">
 					<span class="star">&#9733;</span> <span class="star">&#9733;</span>
 					<span class="star">&#9733;</span> <span class="star">&#9733;</span>
 					<span class="star">&#9733;</span>
 				</div>
 				<div class="avg-rating">평균 평점:
-					${vo.avgRating}(${vo.likeCount})</div>
-				<h3 class="price">₩${vo.bookPrice}</h3>
+					${bvo.avgRating}(${bvo.likeCount})</div>
+				<h3 class="price">₩${bvo.bookPrice}</h3>
 				<div class="total-price">
-					총 가격: ₩<span bp="${vo.bookPrice}">${vo.bookPrice}</span>
+					총 가격: ₩<span bp="${bvo.bookPrice}">${bvo.bookPrice}</span>
 				</div>
 				<div class="quantity-control">
 					<button id="minus">-</button>
@@ -54,9 +54,9 @@
 	<div style="text-align: center;">
 		<h2>[상세보기]</h2>
 		<div class="product-image">
-			<img src="${vo.bookcover}" alt="책 표지">
+			<img src="${bvo.bookcover}" alt="책 표지">
 		</div>
-		<h1>${vo.shortText}</h1>
+		<h1>${bvo.shortText}</h1>
 	</div>
 	<br>
 	<hr>
@@ -86,7 +86,7 @@
 								</div>
 								<p>이 책 정말 재밌어요!</p>
 								<!-- 예시 댓글에 사용할 이미지 -->
-								<img src="${vo.bookcover}" alt="예시 이미지" class="comment-image"
+								<img src="${bvo.bookcover}" alt="예시 이미지" class="comment-image"
 									style="max-width: 200px;" />
 							</div>
 						</li>
@@ -134,7 +134,7 @@
 
 	<div class="fixed-bar">
 		<div class="total-price">
-			총 가격: ₩<span bp="${vo.bookPrice}">${vo.bookPrice}</span>
+			총 가격: ₩<span bp="${bvo.bookPrice}">${bvo.bookPrice}</span>
 		</div>
 		<div class="quantity-control">
 			<button id="minus">-</button>

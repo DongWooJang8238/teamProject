@@ -133,6 +133,13 @@
 	<insert id="insertOrderBookList" parameterType="org.joonzis.domain.OrderBookListVO">
 		insert into tbl_odno_bno values (#{odno}, #{bno}, #{count})
 	</insert>
+	<!-- 유저 정보 업데이트 ( check 선택시 ) -->
+	<update id="checkUserUpdate" parameterType="org.joonzis.domain.UserVO">
+		update tbl_user set 
+		USERPHONENUMBER = #{userPhonenumber},
+		USERADDRESS = #{userAddress}
+		where mno = #{mno}
+	</update>
 	<!-- 장바구니에서 구매한 데이터 삭제 -->
 	<delete id="deleteCartAll" parameterType="int">
 		delete from tbl_order where mno = #{mno}
