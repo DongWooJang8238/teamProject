@@ -57,7 +57,12 @@
             <input type="tel" id="orderPhone" name="orderPhone" value="${uvo.userPhonenumber}" required>
         </div>
         <div class="form-group">
-            <label for="orderAddr">주소</label>
+            <label for="jangsick">기본 배송지</label>
+            <input type="text" id="jangsick" name="jangsick" value="${uvo.userAddress}" required readonly="readonly">
+            <button type="button" onclick="addrChange();">배송지 변경</button>
+        </div>
+        <div class="form-group" id="newAddr">
+            <label for="orderAddr">변경할 배송지</label>
             <input type="text" id="orderAddr" name="orderAddr" value="${uvo.userAddress}" required>
         </div>
         <div>

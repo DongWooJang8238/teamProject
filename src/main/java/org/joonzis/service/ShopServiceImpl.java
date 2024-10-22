@@ -57,7 +57,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int getTotalByGno(int gno) {
+	public int getTotalByGno(int[] gno) {
 		log.info("토탈스..장르.. " + gno);
 		return mapper.getTotalByGno(gno);
 	}
@@ -193,5 +193,11 @@ public class ShopServiceImpl implements ShopService {
 	public int selectCuNext(BookBuyListVO bblvo) {
 		log.warn("서비스 찜 리스트 조회.." + bblvo);
 		return mapper.selectCuNext(bblvo);
+	}
+	
+	@Override
+	public int getDeleteBook(int bno) {
+		log.warn("서비스 상품 삭제.. : " + bno);
+		return mapper.getDeleteBook(bno);
 	}
 }

@@ -23,17 +23,17 @@
 	</div>
 	
 	<div class="category-body">
-		<label>장르</label>
-		소설<input type="checkbox" name="gno" value="1">
-		역사<input type="checkbox" name="gno" value="2">
-		과학<input type="checkbox" name="gno" value="3">
-		예술<input type="checkbox" name="gno" value="4">
-		철학<input type="checkbox" name="gno" value="5">
-		자기계발<input type="checkbox" name="gno" value="6">
-		기술/공학<input type="checkbox" name="gno" value="7">
-		경제/경영<input type="checkbox" name="gno" value="8">
-		사회과학<input type="checkbox" name="gno" value="9">
-		종교<input type="checkbox" name="gno" value="10">
+		<label id="tt" data-check-check="${checkCategorys}">장르</label>
+		<span>소설</span><input type="checkbox" name="gno" value="1">
+		<span>역사</span><input type="checkbox" name="gno" value="2">
+		<span>과학</span><input type="checkbox" name="gno" value="3">
+		<span>예술</span><input type="checkbox" name="gno" value="4">
+		<span>철학</span><input type="checkbox" name="gno" value="5">
+		<span>자기계발</span><input type="checkbox" name="gno" value="6">
+		<span>기술/공학</span><input type="checkbox" name="gno" value="7">
+		<span>경제/경영</span><input type="checkbox" name="gno" value="8">
+		<span>사회과학</span><input type="checkbox" name="gno" value="9">
+		<span>종교</span><input type="checkbox" name="gno" value="10">
 	</div>
 	<!-- <div class="sidebar">
 		<h3>카테고리</h3>

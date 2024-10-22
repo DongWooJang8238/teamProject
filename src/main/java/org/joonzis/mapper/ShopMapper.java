@@ -18,7 +18,7 @@ public interface ShopMapper {
 	// 전체 게시글 수
 	public int getTotal();
 	// 전체 게시글 수
-	public int getTotalByGno(int gno);
+	public int getTotalByGno(int[] gno);
 	// 책 평점 수 조회
 	public int getTotalLikeByBno(int bno);
 	// 책 데이터 인서트
@@ -63,4 +63,6 @@ public interface ShopMapper {
 	public int checkUserUpdate(UserVO uservo);
 	// 책 데이터 검색
 	public List<BookVO> getBookListSelect(SelectDTO sel);
+	// 상품 삭제
+	public int getDeleteBook(int bno);
 }

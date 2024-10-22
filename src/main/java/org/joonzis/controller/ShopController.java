@@ -41,19 +41,31 @@ public class ShopController {
 	@Autowired
 	private UserService uservice;
 	
-	// 쇼핑 리스트 이동
+	// 쇼핑 리스트 이동 ( 카테고리 선택 )
 	@GetMapping("/listCe")
-	public String list(Model model, int[] checkCategorys) {
-		for (int i = 0; i < checkCategorys.length; i++) {
-			log.warn(checkCategorys);
+	public String list(Model model, Criteria cri) {
+		String checkGener = null;
+		// gener이 null이 아닌 경우
+		if(cri.getGener() != null) {
+			log.warn("generOne : " + cri.getGener()[0]);
+			checkGener = "" + cri.getGener()[0];
+			
+			for (int i = 1; i < cri.getGener().length; i++) {
+				log.warn("generTwo : " + cri.getGener()[i]);
+				checkGener += "," + cri.getGener()[i];
+				log.warn("generCheck : " + checkGener);
+			}
 		}
+		log.warn("generCheckFinal : " + checkGener);
 		
-		log.info("쇼핑 리스트 목록..");
-
-		model.addAttribute("list", service.getBookList());
+		int total = service.getTotalByGno(cri.getGener());
+		log.info("total..." + total);
 		
-		log.info("쇼핑 리스트 결과.. : " + model);
+		// 1,2,3,4
 		
+		model.addAttribute("list", service.getBookListGe(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("checkCategorys", checkGener);
 		return "/shop/shopList";
 	}
 	
@@ -75,22 +87,13 @@ public class ShopController {
 		}
 		
 		
-		if(cri.getGener() == 0) {
-			log.warn("컨트롤러 필터 타입3 : " + cri.getFilterType());
-			int total = service.getTotal();
-			log.info("total..." + total);
+		log.warn("컨트롤러 필터 타입3 : " + cri.getFilterType());
+		int total = service.getTotal();
+		log.info("total..." + total);
 			
-			model.addAttribute("list", service.getBookList(cri));
-			model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("list", service.getBookList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 			
-		}else if(cri.getGener() > 0) {
-			log.warn("컨트롤러 필터 타입4 : " + cri.getFilterType());
-			int total = service.getTotalByGno(cri.getGener());
-			log.info("total..." + total);
-			
-			model.addAttribute("list", service.getBookListGe(cri));
-			model.addAttribute("pageMaker", new PageDTO(cri, total));
-		}
 		
 		return "/shop/shopList";
 	}
@@ -278,5 +281,16 @@ public class ShopController {
 		log.warn("찜 추가 후 bno : " + vo.getBno() + ",mno : " + vo.getMno());
 		int result = service.cuNext(vo);
 		return result == 1 ? new ResponseEntity<String>("success",HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	// 상품 삭제
+	@GetMapping("/delete")
+	public String deleteBook(int bno) {
+		log.warn("상품 삭제... : " + bno);
+		
+		int delete = service.getDeleteBook(bno);
+		
+		log.warn("상품 삭제 결과 : " + delete);
+		return "redirect:/shop/list";
 	}
 }

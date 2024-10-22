@@ -1,42 +1,82 @@
 // 카테고리 클릭 이벤트 - 조회
-document.querySelectorAll('.sidebar a').forEach(a => {
-	a.addEventListener('click', e => {
-		e.preventDefault();
-		
-		gener = a.getAttribute('href');
-		filterType = a.getAttribute('filterType');
-		if(gener === null){
-			gener = new URLSearchParams(location.search).get('gener');
-		}
-		if(filterType === null){
-			filterType = new URLSearchParams(location.search).get('filterType');
-		}
-		setStorageData(pageNum, amount, gener, filterType);
-		
-		let sendData = `pageNum=1&amount=${amount}&gener=${gener}&filterType=${filterType}`;
-		console.log(sendData);
-		
-		location.href = `/shop/list?${sendData}`;
-	});
-});
+//document.querySelectorAll('.sidebar a').forEach(a => {
+//	a.addEventListener('click', e => {
+//		e.preventDefault();
+//		
+//		gener = a.getAttribute('href');
+//		filterType = a.getAttribute('filterType');
+//		if(gener === null){
+//			gener = new URLSearchParams(location.search).get('gener');
+//		}
+//		if(filterType === null){
+//			filterType = new URLSearchParams(location.search).get('filterType');
+//		}
+//		setStorageData(pageNum, amount, gener, filterType);
+//		
+//		let sendData = `pageNum=1&amount=${amount}&gener=${gener}&filterType=${filterType}`;
+//		console.log(sendData);
+//		
+//		location.href = `/shop/list?${sendData}`;
+//	});
+//});
 
+// 선택된 카테고리를 배열에 담기
 let checkCategorys = [];
-document.querySelectorAll('input[name="gno"]').forEach(igno => {
-	igno.addEventListener('change', e => {
-		console.log(e.target.value);
-		console.log(e.target.checked);
-		
-		if(e.target.checked){
-			checkCategorys.push(e.target.value);
-		}else {
-			checkCategorys = checkCategorys.filter(value => value !== e.target.value);
-		}
-		
-		console.log(checkCategorys);
-		location.href = `/shop/list?checkCategorys=${checkCategorys}`;
-	});
+
+// DOMContentLoaded 이벤트가 발생하면 label에서 값 가져오기
+document.addEventListener("DOMContentLoaded", function() {
+    // label에 저장된 selectedGener 값 가져오기
+    const label = document.querySelector('#tt'); // ID에 맞는 label 요소
+    let selectedGener = label.getAttribute('data-check-check');
+
+    // selectedGener가 값이 있으면 배열로 변환
+    if (selectedGener) {
+        checkCategorys = selectedGener.split(',')
+            .map(value => Number(value.trim())) // 숫자로 변환하면서 공백 제거
+            .filter(value => !isNaN(value)); // NaN 제거
+    }
+
+    // 체크박스 상태 유지
+    document.querySelectorAll('input[name="gno"]').forEach(checkbox => {
+        if (checkCategorys.includes(Number(checkbox.value))) { // value를 숫자로 비교
+            checkbox.checked = true; // 선택된 카테고리는 체크박스 체크
+            const span = checkbox.previousElementSibling; // 가장 가까운 span
+            span.style.backgroundColor = '#cccccc'; // 색상 변경
+        }
+    });
 });
 
+// 카테고리 선택 시 발동 이벤트
+document.querySelectorAll('input[name="gno"]').forEach(checkbox => {
+    checkbox.addEventListener('change', e => {
+        console.log(e.target.value);
+        console.log(e.target.checked);
+        
+        const valueAsNumber = Number(e.target.value); // value를 숫자로 변환
+        const span = e.target.previousElementSibling; // 가장 가까운 span
+        console.log(span);
+        
+        if (e.target.checked) {
+            // 체크된 경우 배열에 추가
+            checkCategorys.push(valueAsNumber);
+            console.log("색상 변경 전: ", span.style.backgroundColor);
+            span.style.backgroundColor = '#cccccc';
+            console.log("색상 변경 후: ", span.style.backgroundColor);
+        } else {
+            // 체크 해제된 경우 배열에서 제거
+            checkCategorys = checkCategorys.filter(value => value !== valueAsNumber);
+            span.style.backgroundColor = '';
+        }
+
+        console.log(checkCategorys);
+        location.href = `/shop/listCe?gener=${checkCategorys}&pageNum=1&amount=20&filterType=bno`;
+    });
+});
+
+
+
+
+// 검색 관련 필드
 const selectOp = document.querySelector('select[name="selectOption"]');
 const selectVl = document.querySelector('input[name="selectBook"]');
 // 검색 옵션 이벤트

@@ -56,6 +56,8 @@ document.querySelectorAll('button').forEach(btn => {
 		        top: document.documentElement.scrollHeight,  // Scroll to the bottom
 		        behavior: 'smooth'  // Smooth scrolling
 		    });
+		}else if(btn.id === 'goDelete'){
+			location.href = "/shop/delete?bno=" + bno;
 		}
 	});
 });
@@ -107,10 +109,8 @@ function shopingList() {
 			// 말풍선 표시
 			tooltip.style.display = 'block';
 
-			// 2초 후에 말풍선 숨기기
-			setTimeout(function() {
-				tooltip.style.display = 'none';
-			}, 2000);
+			// 마우스가 영역을 벗어났을 때 말풍선 숨기기
+			tooltip.addEventListener('mouseleave', hideTooltip);
 		} else {
 			alert('잘못된 접근입니다.');
 		}
@@ -153,3 +153,7 @@ document.addEventListener("scroll", function () {
 	  }
 	});
 
+//말풍선 숨기기 함수
+function hideTooltip() {
+    tooltip.style.display = 'none';
+}

@@ -69,9 +69,7 @@
 
 		<!-- 수정/환불/취소 버튼 -->
 		<div class="payment-action">
-			<button class="modify-button">정보수정</button>
-			<button class="refund-button">환불하기</button>
-			<button class="cancel-button">구매취소</button>
+			<a href="/"><button class="home-button">확인</button></a>
 		</div>
 
 	</div>

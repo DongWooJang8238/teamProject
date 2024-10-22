@@ -128,6 +128,8 @@
 		<button id="goTop">Top</button>
 		<button id="gobottom">Bottom</button>
 		<button id="goShopList">목록으로 가기</button>
+		<!-- 관리자용 -->
+		<button id="goDelete">상품 삭제</button>
 	</div>
 
 	<jsp:include page="../layout/footer.jsp" />
@@ -148,7 +150,10 @@
 			<button id="goShopList">목록으로 가기</button>
 		</div>
 	</div>
-	<div id="tooltip">장바구니에 담겼습니다</div>
+	<div id="tooltip">
+	장바구니에 담겼습니다
+	<button onclick="goToCart();">장바구니 이동</button>
+	</div>
 </body>
 <script type="text/javascript" src="/resources/js/shop/shopGet.js"></script>
 <script type="text/javascript" src="/resources/js/shop/shopReview.js"></script>

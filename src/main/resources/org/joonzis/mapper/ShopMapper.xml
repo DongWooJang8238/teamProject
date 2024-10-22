@@ -34,7 +34,11 @@
 			<![CDATA[
 			select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
 			(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
-			(select * from tbl_book where gno = #{gener} ORDER BY ]]>
+			(select * from tbl_book where gno in (]]> 
+			<foreach collection="gener" item="gno" separator="," open="" close="">
+			#{gno}
+			</foreach>
+			<![CDATA[) ORDER BY ]]>
 						<choose>
 							<when test="filterType == 'sellcount'">sellcount DESC</when>
 							<when test="filterType == 'avgrating'">avgRating DESC</when>
@@ -64,9 +68,13 @@
 	</select>
 	
 	<!-- 카테고리 별 책 개수 조회 -->
-	<select id="getTotalByGno" parameterType="int" resultType="int">
-		 select count(*) from tbl_book where gno = #{gno}
+	<select id="getTotalByGno" parameterType="int[]" resultType="int">
+	    select count(*) from tbl_book where gno in 
+		    <foreach collection="array" item="gno" separator="," open="(" close=")">
+		        #{gno}
+		    </foreach>
 	</select>
+
 	
 	<!-- 책 좋아요 수 조회 -->
 	<select id="getTotalLikeByBno" parameterType="int" resultType="int">
@@ -161,4 +169,9 @@
 	<select id="selectCuNext" parameterType="org.joonzis.domain.BookBuyListVO" resultType="int">
 		select count(*) from tbl_bookcu where bno = #{bno} and mno = #{mno}
 	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="getDeleteBook" parameterType="int">
+		delete from tbl_book where bno = #{bno}
+	</delete>
 </mapper>

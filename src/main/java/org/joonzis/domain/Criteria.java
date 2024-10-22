@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Criteria {
 	private int pageNum;	// 페이지 번호
 	private int amount;		// 가져올 게시글 수
-	private int gener;		// 장르 번호
+	private int[] gener;		// 장르 번호
 	private String filterType; // 필터 타입
 	
 }

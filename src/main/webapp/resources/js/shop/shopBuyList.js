@@ -146,6 +146,10 @@ function cardPay() {
 			})
 			.catch(error => console.error('Error:', error));
 }
+
+function addrChange() {
+	document.querySelector('#newAddr').style.display = 'block';
+}
 // 카카오페이 결제 api 관련
 //document.querySelector(".btn-pay-ready").addEventListener('click', a => {
 //  	console.log("결제test");

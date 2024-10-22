@@ -16,7 +16,7 @@ public interface ShopService {
 
 	public int getTotal();
 
-	public int getTotalByGno(int gno);
+	public int getTotalByGno(int[] gno);
 	
 	public int insertShopBook(BookVO vo);
 
@@ -49,4 +49,7 @@ public interface ShopService {
 	public int selectCuNext(BookBuyListVO bblvo);
 	
 	public List<BookVO> getBookListSelect(SelectDTO sel);
+	
+	// 상품 삭제
+		public int getDeleteBook(int bno);
 }

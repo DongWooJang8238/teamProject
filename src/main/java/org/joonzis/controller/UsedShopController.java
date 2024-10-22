@@ -34,20 +34,12 @@ public class UsedShopController {
 		}
 		
 		
-		if(cri.getGener() == 0) {
 			int total = service.getTotal();
 			log.info("total..." + total);
 			
 			model.addAttribute("list", service.getuBookList(cri));
 			model.addAttribute("pageMaker", new PageDTO(cri, total));
 			
-		}else if(cri.getGener() > 0) {
-			int total = service.getTotalByGno(cri.getGener());
-			log.info("total..." + total);
-			model.addAttribute("list", service.getuBookListGe(cri));
-			model.addAttribute("pageMaker", new PageDTO(cri, total));
-		}
-		
 		return "/usedShop/usedShopList";
 	}
 	
