@@ -6,24 +6,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         var likeData = {
             boardno: boardno,
-            mno: 1
+            mno: mno
         };
-
+        
+        console.log(JSON.stringify(likeData));
+        
         // 좋아요 토글 요청
         fetch('/like/get', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(likeData)
         })
-        .then(response => response.text())
+        .then(response => response.text()) // text으로 변환
         .then(data => {
-            alert(data); // "Like added" 또는 "Like removed" 메시지 표시
+            console.log(data); // "Like added" 또는 "Like removed" 메시지 표시
             // 좋아요 개수 업데이트
             updateLikeCount(boardno);
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('getElementById Error:', error));
     });
 
     // 좋아요 개수 업데이트 함수
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('/like/count/' + boardno)
         .then(response => response.text())
         .then(count => {
-            document.getElementById('like-count').textContent = count;
+            document.getElementById('like-countMy').innerHTML = count;
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('updateLikeCount Error:', error));
     }
 });

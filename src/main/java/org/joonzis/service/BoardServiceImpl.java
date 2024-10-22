@@ -6,6 +6,7 @@ import org.joonzis.domain.BoardAttachVO;
 import org.joonzis.domain.BoardVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.mapper.BoardAttachMapper;
+import org.joonzis.mapper.BoardLikeMapper;
 import org.joonzis.mapper.BoardMapper;
 import org.joonzis.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardAttachMapper attachMapper;
+	
+	@Autowired
+	private BoardLikeMapper likeMapper;
 	
 //	@Override
 //	public List<BoardVO> getList() {
@@ -77,6 +81,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		replymapper.boardDelete(boardno);
 		attachMapper.deleteBoard(boardno);
+		likeMapper.deleteBoard(boardno);
 		
 		return mapper.remove(boardno);
 	}
@@ -104,7 +109,12 @@ public class BoardServiceImpl implements BoardService {
 		 log.info("getAttachList... " + boardno);
 		return attachMapper.findByBoardno(boardno);
 	}
-	
+
+	@Override
+	public int getLikeCount(int boardno) {
+		log.warn("서비스 게시글 좋아요 수" + boardno);
+		return mapper.getLikeCount(boardno);
+	}
 	
 	
 }

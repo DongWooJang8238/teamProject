@@ -55,6 +55,7 @@ public class BoardController {
 			
 			log.info("get..." + boardno);
 			model.addAttribute("vo", service.get(boardno));
+			model.addAttribute("likecount", service.getLikeCount(boardno));
 			return "/board/get";
 		}
 		// 게시글 수정, 수정이 완료되면 board/list로 이동

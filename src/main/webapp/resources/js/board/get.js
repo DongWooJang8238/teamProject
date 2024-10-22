@@ -154,7 +154,7 @@ function registerReply(){
 				reply : inputReply.value,
 				replyer : inputReplyer.value,
 				boardno : f.boardno.value,
-				mno : 1
+				mno : f.mno.value
 			},
 			function(result){
 				console.log("result : " + result);

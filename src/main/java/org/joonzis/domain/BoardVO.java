@@ -18,4 +18,5 @@ public class BoardVO {
 	private Date regDate, updateDate;
 	
 	private List<BoardAttachVO> attachList;
+	private int likecount;
 }

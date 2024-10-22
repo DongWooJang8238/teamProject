@@ -31,5 +31,8 @@ public interface BoardMapper {
 
 	// 댓글 수 수정
 	public int updateReplyCnt(@Param("boardno") int boardno, @Param("amount") int amount);
+	
+	// 좋아요 수 조회
+	public int getLikeCount(int boardno);
 
 }

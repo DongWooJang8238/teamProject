@@ -14,22 +14,20 @@ public class BoardLikeServiceImpl implements BoardLikeService {
 	@Autowired
 	private BoardLikeMapper mapper;
 
-	@Override
-	public void insertLike(BoardLikeVO vo) {
-		// 좋아요가 이미 눌렸는지 확인 후 처리
-		log.info("insertLike... " + vo);
-        // mno를 사용하여 좋아요 여부 확인
-        if (!isLiked(vo.getBoardno(), vo.getMno())) {
-            mapper.insertLike(vo);
-        } else {
-            log.info("이미 좋아요가 눌린 상태입니다.");
-        }
-	}
+
 
 	@Override
-	public void deleteLike(BoardLikeVO vo) {
+	public int insertLike(BoardLikeVO vo) {
+		// 좋아요가 이미 눌렸는지 확인 후 처리
+				log.info("insertLike... " + vo);
+		        
+		        return mapper.insertLike(vo);
+			}
+
+	@Override
+	public int deleteLike(BoardLikeVO vo) {
 		log.info("deleteLike... " + vo);
-		mapper.deleteLike(vo);
+		return mapper.deleteLike(vo);
 	}
 
 	@Override
@@ -39,8 +37,8 @@ public class BoardLikeServiceImpl implements BoardLikeService {
 	}
 
 	@Override
-	public boolean isLiked(int boardno, int mno) {
+	public int isLiked(BoardLikeVO vo) {
 		// 좋아요 여부 확인: 반환값이 0보다 크면 이미 좋아요가 눌린 상태
-		return mapper.isLiked(boardno, mno) > 0;
+		return mapper.isLiked(vo);
 	}
 }

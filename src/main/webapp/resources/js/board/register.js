@@ -55,7 +55,7 @@ function register(){
 	
 	let input = document.createElement('input');
 	input.name = 'mno';
-	input.value = 1;
+	input.value = mno;
 	input.type = 'hidden';
 	f.append("mno",input);
 	
