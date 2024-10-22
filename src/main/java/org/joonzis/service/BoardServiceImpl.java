@@ -7,6 +7,7 @@ import org.joonzis.domain.BoardVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.mapper.BoardAttachMapper;
 import org.joonzis.mapper.BoardMapper;
+import org.joonzis.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardMapper mapper;
+	
+	@Autowired
+	private ReplyMapper replymapper;
 	
 	@Autowired
 	private BoardAttachMapper attachMapper;
@@ -66,9 +70,14 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.modify(vo);
 	}
 
+	@Transactional
 	@Override
 	public int remove(int boardno) {
 		log.info("remove..." + boardno);
+		
+		replymapper.boardDelete(boardno);
+		attachMapper.deleteBoard(boardno);
+		
 		return mapper.remove(boardno);
 	}
 

@@ -23,14 +23,14 @@ document.querySelectorAll(".user-options button").forEach(a => {
 		}else if(menu === "cart"){
 			goToCart();
 		}else if(menu === "myPage"){
-			if(userId.value === ""){
+			if(mno.value === ""){
 				if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')){
 					location.href = '/User/login';
 				}else {
 					console.log('로그인안함');
 				}
 			}else {
-				location.href = '/User/myPage?userId=' + userId.value;
+				location.href = '/User/myPage?mno=' + mno.value;
 			}
 		}
 		
@@ -60,7 +60,7 @@ function goToCart() {
 	location.href = '/shop/cartListBuy?mno=' + 1;
 }
 function goBoard() {
-	location.href = '/board/list?pageNum=1&amount=5';
+	location.href = '/board/list?pageNum=1&amount=10';
 }
 function goGame(){
 	location.href = '/game/entrance?mno='+1;

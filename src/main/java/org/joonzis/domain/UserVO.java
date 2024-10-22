@@ -19,7 +19,6 @@ public class UserVO {
 	userEmail, userGender, 
 	userRole, nickName, userIcon;
 	
-//	private MultipartFile userIcon;
 	private Date userDate, registerDate;
 
 }

@@ -7,6 +7,7 @@ import org.joonzis.domain.BookVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
+import org.joonzis.domain.SelectDTO;
 import org.joonzis.domain.UserVO;
 import org.joonzis.mapper.ShopMapper;
 import org.joonzis.mapper.UserMapper;
@@ -36,7 +37,11 @@ public class ShopServiceImpl implements ShopService {
 	    return list;
 	}
 
-
+	@Override
+	public List<BookVO> getBookListSelect(SelectDTO sel) {
+		log.warn("서비스 책 리스트 검색..." + sel.getSelectOption() + sel.getSelectValue());
+		return mapper.getBookListSelect(sel);
+	}
 
 	
 	@Override

@@ -20,6 +20,41 @@ document.querySelectorAll('.sidebar a').forEach(a => {
 	});
 });
 
+let checkCategorys = [];
+document.querySelectorAll('input[name="gno"]').forEach(igno => {
+	igno.addEventListener('change', e => {
+		console.log(e.target.value);
+		console.log(e.target.checked);
+		
+		if(e.target.checked){
+			checkCategorys.push(e.target.value);
+		}else {
+			checkCategorys = checkCategorys.filter(value => value !== e.target.value);
+		}
+		
+		console.log(checkCategorys);
+		location.href = `/shop/list?checkCategorys=${checkCategorys}`;
+	});
+});
+
+const selectOp = document.querySelector('select[name="selectOption"]');
+const selectVl = document.querySelector('input[name="selectBook"]');
+// 검색 옵션 이벤트
+selectOp.addEventListener('change', e => {
+	console.log(e.target.value);
+	if(e.target.value === "title"){
+		document.querySelector('input[name="selectBook"]').placeholder = "제목으로 검색";
+	}else if(e.target.value === "writer"){
+		document.querySelector('input[name="selectBook"]').placeholder = "작가명으로 검색";
+	}
+});
+
+// 검색 이벤트
+function selectBookShoping() {
+	console.log(selectOp.value);
+	location.href = "/shop/listSelect?selectOption=" + selectOp.value + "&selectValue=" +  selectVl.value;
+}
+
 document.querySelectorAll('.card-title a').forEach(a => {
 	a.addEventListener('click', e => {
 		e.preventDefault();

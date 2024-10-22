@@ -17,10 +17,10 @@ public class BoardLikeController {
     @Autowired
     private BoardLikeService service;
 
-    // 좋아요 추가/삭제 기능 (toggle)
-    @PostMapping("/toggle")
+    // 좋아요 추가/삭제 기능 
+    @PostMapping("/get")
     public ResponseEntity<String> toggleLike(@RequestBody BoardLikeVO vo) {
-        log.info("toggleLike... " + vo);
+        log.info("getLike... " + vo);
         
         boolean isLiked = service.isLiked(vo.getBoardno(), vo.getMno());
         
