@@ -64,6 +64,7 @@
             </tbody>
          </table>
          <input type="hidden" name="ubookImage">
+         <input type="hidden" name="mno" value="1">
 		</form>
 	</div>
 	<div class="footer">

@@ -12,22 +12,26 @@ const userId = document.querySelector('input[name="userId"]');
 // 헤더 각 버튼 이벤트 핸들러
 document.querySelectorAll(".user-options button").forEach(a => {
 	a.addEventListener('click', ()=>{
-		const form = new FormData();
-		form.append(userId);
 		let menu = a.id;
 		 console.log(menu);
 		if(menu === "login"){
 			location.href = '/User/login';
 		}else if(menu === "logout"){
-			
+			// 추후 적용 예정 ( 시큐리티 )
 		}else if(menu === "signup"){
 			location.href = '/User/signup';
 		}else if(menu === "cart"){
 			goToCart();
 		}else if(menu === "myPage"){
-			
-			form.action = "/User/myPage";
-			form.submit();
+			if(mno.value === ""){
+				if(confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')){
+					location.href = '/User/login';
+				}else {
+					console.log('로그인안함');
+				}
+			}else {
+				location.href = '/User/myPage?mno=' + mno.value;
+			}
 		}
 		
 	});
@@ -53,6 +57,12 @@ function shopListGo() {
 function goToCart() {
 	location.href = '/shop/cartListBuy?mno=' + 1;
 }
+<<<<<<< HEAD
+=======
+function goBoard() {
+	location.href = '/board/list?pageNum=1&amount=10';
+}
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 function goGame(){
 	location.href = '/game/entrance?mno='+1;
 }

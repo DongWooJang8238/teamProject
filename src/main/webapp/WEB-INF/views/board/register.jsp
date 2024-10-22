@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,12 @@
 				<tbody>
 					<tr>
 						<th>카테고리</th>
-						<td><input type="text" name="category"></td>
+						<td><select name="category">
+          					  <option value="free">자유게시판</option>
+           					  <option value="review">리뷰게시판</option>
+           					  <option value="discussion">토론게시판</option>
+          					  <option value="notific">공지사항</option> <!-- 추후 어드민만 보이게 설정? --></select>
+						</td>
 					</tr>
 					<tr>
 						<th>제목</th>
@@ -25,7 +30,7 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer" /></td>
+						<td><input type="text" name="writer" /></td><!-- 로그인시 추가 -->
 					</tr>
 					<tr>
 						<th>내용</th>

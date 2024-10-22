@@ -47,13 +47,12 @@ public class GameServiceImpl implements GameService{
 	@Override
 	public int insertUser(int mno) {
 		log.info("insertUser......");
-		return 0;
+		return gamemapper.insertUser(mno);
 	}
-	
-
-	
-	
-	
-	
+	@Override
+	public int updatePGdate(int mno) {
+		log.info("updatePGdate......");
+		return gamemapper.updatePGdate(mno);
+	}
 
 }

@@ -6,7 +6,9 @@ import org.joonzis.domain.BoardAttachVO;
 import org.joonzis.domain.BoardVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.mapper.BoardAttachMapper;
+import org.joonzis.mapper.BoardLikeMapper;
 import org.joonzis.mapper.BoardMapper;
+import org.joonzis.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,13 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper mapper;
 	
 	@Autowired
+	private ReplyMapper replymapper;
+	
+	@Autowired
 	private BoardAttachMapper attachMapper;
+	
+	@Autowired
+	private BoardLikeMapper likeMapper;
 	
 //	@Override
 //	public List<BoardVO> getList() {
@@ -51,8 +59,9 @@ public class BoardServiceImpl implements BoardService {
 		if (vo.getAttachList() != null && vo.getAttachList().size() > 0) {
 		    vo.getAttachList().forEach(attach -> {
 		        attach.setBoardno(vo.getBoardno());  // 게시글 번호 설정
-		        attachMapper.register(attach);       // 첨부 파일 등록
-		        log.info("Registered boardno: " + vo.getBoardno());
+		        log.warn("아타치 등록 데이터 : " + attach.getBoardno());
+		        int atResult = attachMapper.register(attach);       // 첨부 파일 등록
+		        log.warn("아타치 등록 결과 : " + atResult);
 		    });
 		}
 	
@@ -65,9 +74,15 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.modify(vo);
 	}
 
+	@Transactional
 	@Override
 	public int remove(int boardno) {
 		log.info("remove..." + boardno);
+		
+		replymapper.boardDelete(boardno);
+		attachMapper.deleteBoard(boardno);
+		likeMapper.deleteBoard(boardno);
+		
 		return mapper.remove(boardno);
 	}
 
@@ -94,7 +109,12 @@ public class BoardServiceImpl implements BoardService {
 		 log.info("getAttachList... " + boardno);
 		return attachMapper.findByBoardno(boardno);
 	}
-	
+
+	@Override
+	public int getLikeCount(int boardno) {
+		log.warn("서비스 게시글 좋아요 수" + boardno);
+		return mapper.getLikeCount(boardno);
+	}
 	
 	
 }

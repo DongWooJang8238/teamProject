@@ -8,6 +8,8 @@ document.querySelectorAll(".sidebar a").forEach(a => {
 		let menu = a.getAttribute('href');
 		if(a.id === "checkPage"){
 			location.href = menu;
+		}else if(a.id === "aa"){
+			location.href = menu;
 		}
 		
 	});

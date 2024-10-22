@@ -13,6 +13,8 @@ public interface ReplyMapper {
 	public ReplyVO read(int replyno);
 	// 댓글 삭제
 	public int delete(int replyno);
+	// 댓글 삭제
+	public int boardDelete(int boardno);
 	// 댓글 수정
 	public int update(ReplyVO rvo);
 }

@@ -50,4 +50,19 @@ public class ShopRivewController {
 		log.warn("컨트롤러 리뷰 조회..." + bno);
 		return new ResponseEntity<List<ReviewVO>>(service.getReviewList(bno),HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/deleteReview/{bno}/{mno}", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> deleteReview(@PathVariable("bno") int bno, @PathVariable("mno") int mno){
+		log.warn("컨트롤러 리뷰 삭제..." + bno);
+		log.warn("컨트롤러 리뷰 삭제..." + mno);
+		ReviewVO rvo = new ReviewVO();
+		rvo.setBno(bno);
+		rvo.setMno(mno);
+		
+		int result = service.deleteReview(rvo);
+		
+		log.warn("컨트롤러 리뷰 삭제 결과..." + result);
+		
+		return result == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

@@ -12,22 +12,24 @@
 	<div class="board-container">
 		<!-- 카테고리 부분 -->
 		<div class="category">
+		<hr>
+		<a href="free">자유게시판</a> <a href="review">리뷰게시판</a> <a href="discussion">토론게시판</a>
+		<a href="notific">공지</a>
+		<hr>
 		</div>
 		<div class="panel-heading">
-			<button type="button" class="btn btn-fir" id="registerBtn">
-				새 게시글 등록</button>
-		</div>
-		<!-- 게시판 리스트 -->
+			<button type="button" class="btn btn-fir" id="registerBtn">새 게시글 등록</button>
+		</div><!-- 게시판 리스트 -->
 		<div class="board-list">
 			<table class="board-table">
 				<thead>
 					<tr>
 						<th>게시글 번호</th>
 						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
 						<th>댓글수</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,10 +38,10 @@
 						<tr>
 							<td>${vo.boardno }</td>
 							<td><a href="${vo.boardno}"> ${vo.title }</td>
-							<td>${vo.writer }</td>
-							<td>${vo.regDate }</td>
-							<td>${vo.readCount }</td>
 							<td>${vo.replyCount }</td>
+							<td>${vo.writer }</td>
+							<td>${vo.readCount }</td>
+							<td>${vo.regDate }</td>
 						</tr>
 						<br>
 					</c:forEach>
@@ -69,6 +71,7 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="../layout/footer.jsp" />
 <script type="text/javascript" src="/resources/js/board/boardList.js"></script>
 </body>
 </html>

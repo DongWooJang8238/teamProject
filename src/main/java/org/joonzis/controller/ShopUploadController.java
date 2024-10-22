@@ -6,17 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 
 import org.joonzis.domain.ReviewAttachVO;
+import org.joonzis.domain.usedBookImgVO;
 import org.joonzis.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -71,7 +67,7 @@ public class ShopUploadController {
 		
 		log.info("upload Async post...");
 		
-		String uploadFolder = "C:\\dev\\workspace\\workSpace_spring\\project_paperGround\\src\\main\\webapp\\resources\\images";
+		String uploadFolder = "C:\\Users\\sdedu\\Desktop\\project_paperGround\\src\\main\\webapp\\resources\\images";
 		
 		// make folder --------------
 		File uploadPath = new File(uploadFolder);
@@ -112,6 +108,59 @@ public class ShopUploadController {
 
 			return new ResponseEntity<ReviewAttachVO>(ravo, HttpStatus.OK);
 	
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/uploadMost",
+				produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<usedBookImgVO>> uploadAsyncPost(MultipartFile[] uploadFile, Model model) {
+		
+		List<usedBookImgVO> list = new ArrayList<usedBookImgVO>();
+		
+		log.info("upload Async post ... ");
+		
+		String uploadFolder = "C:\\Users\\sdedu\\Desktop\\project_paperGround\\src\\main\\webapp\\resources\\images";	// 파일이 저장될 기본 폴더
+		
+		// make folder --------- 날짜별 폴더를 생성
+		File uploadPath = new File(uploadFolder, getFolder());
+		log.info("uploadPath : " + uploadPath);
+		
+		if(!uploadPath.exists()) {
+			uploadPath.mkdirs(); // makeDirectris의 약자
+		}
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			log.info("---------------");
+			log.info("Upload File Name : " + multipartFile.getOriginalFilename());
+			log.info("Upload File Size : " + multipartFile.getSize());
+			
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			uploadFileName =
+					uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			log.info("only file name : " + uploadFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			
+			try {
+				File saveFile = new File(uploadPath, uploadFileName);
+				multipartFile.transferTo(saveFile);	// 파일을 실제로 서버의 지정된 경로에 저장
+				
+				
+				usedBookImgVO attachDto = new usedBookImgVO();
+				attachDto.setUbookimages("/resources/images/" + getFolder() + "/" + uploadFileName);
+				
+				list.add(attachDto);
+				
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			
+		}
+		
+		return new ResponseEntity<List<usedBookImgVO>>(list, HttpStatus.OK);
+		
 	}
 	
 //	// 파일 다운로드

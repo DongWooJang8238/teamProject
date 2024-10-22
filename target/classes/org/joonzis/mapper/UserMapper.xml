@@ -27,9 +27,9 @@
 	<insert id="signup_insert"
 		parameterType="org.joonzis.domain.UserVO">
 		insert into tbl_user
-		(mno,username,userid,userpw,userphonenumber,useraddress,useremail,usergender,USERROLE,nickname,registerdate)
+		(mno,username,userid,userpw,useremail,USERROLE,nickname,registerdate)
 		values
-		(MNO_SEQ.nextval,#{userName},#{userId},#{userPw},'01014545678','test',#{userEmail},'man','USER_ROLE',USERNAME_SEQ.nextval,sysdate)
+		(MNO_SEQ.nextval,#{userName},#{userId},#{userPw},#{userEmail},'USER_ROLE',USERNAME_SEQ.nextval,sysdate)
 	</insert>
 
 	<!-- 아이디 찾기 -->

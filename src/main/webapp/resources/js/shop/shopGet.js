@@ -1,7 +1,7 @@
 // 필드
-const inputCount = document.querySelector('.quantity-control input');
-const spanText = document.querySelector('.total-price span');
-const bp = document.querySelector('.total-price span').getAttribute('bp');
+const inputCount = document.querySelectorAll('.quantity-control input');
+const spanText = document.querySelectorAll('.total-price span');
+//const bp = document.querySelectorAll('.total-price span').getAttribute('bp');
 const bno = new URLSearchParams(location.search).get('bno');
 // 버튼 이벤트
 document.querySelectorAll('button').forEach(btn => {
@@ -11,8 +11,8 @@ document.querySelectorAll('button').forEach(btn => {
 			shopingList();
 		}else if(btn.id === 'buy'){
 			// 구매 페이지로 바로 이동 ( 현재 페이지 데이터 )
-			console.log(inputCount);
-			location.href = "/shop/buy?mno=" + 1 + "&bno=" + bno + "&count=" + inputCount.value;
+			console.log(inputCount[0]);
+			location.href = "/shop/buy?mno=" + 1 + "&bno=" + bno + "&count=" + inputCount[0].value;
 		}else if(btn.id === 'cu'){
 			// 찜하기 ( 비동기로 유저 데이터와 도서 데이터 연결해서 저장 )
 			cuNext();
@@ -25,15 +25,37 @@ document.querySelectorAll('button').forEach(btn => {
 			location.href = "/shop/list?" + sendData;
 		}else if(btn.id === 'minus'){
 //			console.log(document.querySelector('.quantity-control input').value - 1);
-			if(inputCount.value > 1){
-				inputCount.value -= 1;
-				spanText.innerHTML -= bp;
+			for (let i = 0; i < inputCount.length; i++) {
+				if(inputCount[i].value > 1){
+					inputCount[i].value -= 1;
+					spanText[i].innerHTML -= spanText[i].getAttribute('bp');
+				}
 			}
+//			if(inputCount.value > 1){
+//				inputCount.value -= 1;
+//				spanText.innerHTML -= bp;
+//			}
 		}else if(btn.id === 'plus'){
-			if(inputCount.value < 100){
-				spanText.innerHTML = Number(spanText.innerHTML) + Number(bp);
-				inputCount.value = Number(inputCount.value) + 1;
+			for (let i = 0; i < inputCount.length; i++) {
+				if(inputCount[i].value < 100){
+					spanText[i].innerHTML = Number(spanText[i].innerHTML) + Number(spanText[i].getAttribute('bp'));
+					inputCount[i].value = Number(inputCount[i].value) + 1;
+				}
 			}
+		}else if(btn.id === 'goTop'){
+			console.log('123');
+			window.scrollTo({
+		        top: 0,  // Scroll to the top
+		        behavior: 'smooth'  // Smooth scrolling
+		    });
+//			document.documentElement.scrollTop = 0;  // For modern browsers
+//		    document.body.scrollTop = 0;
+		}else if(btn.id === 'gobottom'){
+//			document.body.scrollTop = document.body.scrollHeight;
+			window.scrollTo({
+		        top: document.documentElement.scrollHeight,  // Scroll to the bottom
+		        behavior: 'smooth'  // Smooth scrolling
+		    });
 		}
 	});
 });
@@ -62,7 +84,7 @@ function applyStarRatings() {
 function shopingList() {
 //	const mno = document.querySelector().getAttribute('mno');
 	const mno = 1;
-	const count = inputCount.value;
+	const count = inputCount[0].value;
 	let sendData = `${bno}/${mno}/${count}`;
 	
 	console.log(sendData);
@@ -114,3 +136,20 @@ function cuNext() {
 		})
 		.catch(err => console.log(err));
 }
+
+// 스크롤을 일정 부분 내리면 고정바가 나타나게 함
+document.addEventListener("scroll", function () {
+	  const productDetails = document.querySelector(".product-details");
+	  const fixedBar = document.querySelector(".fixed-bar");
+
+	  // product-details의 하단 위치를 가져옴
+	  const productDetailsBottom = productDetails.getBoundingClientRect().bottom;
+
+	  // product-details가 화면에 보이지 않으면 fixed-bar 표시
+	  if (productDetailsBottom < 0) {
+	    fixedBar.style.display = "block";
+	  } else {
+	    fixedBar.style.display = "none";
+	  }
+	});
+

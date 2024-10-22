@@ -17,27 +17,44 @@ public class BoardLikeController {
     @Autowired
     private BoardLikeService service;
 
-    // 좋아요 추가/삭제 기능 (toggle)
-    @PostMapping("/toggle")
+    // 좋아요 추가/삭제 기능 
+    @PostMapping("/get") // POST 요청이 "/like/get"으로 들어오면 실행
     public ResponseEntity<String> toggleLike(@RequestBody BoardLikeVO vo) {
-        log.info("toggleLike... " + vo);
+        log.info("getLike... " + vo);
+        log.info("getLike... " + vo.getBoardno());
+        log.info("getLike... " + vo.getMno());
         
-        boolean isLiked = service.isLiked(vo.getBoardno(), vo.getMno());
-        
-        if (isLiked) {
-        	service.deleteLike(vo);
-            return new ResponseEntity<>("Like removed", HttpStatus.OK);
+        int isLiked = service.isLiked(vo);
+        log.warn("isLike : " + isLiked);
+        // 서비스 클래스의 isLiked 메서드를 호출해 사용자가 이미 게시글에 좋아요를 눌렀는지 확인
+        if (isLiked > 0) {
+        	service.deleteLike(vo); // 사용자가 이미 좋아요를 눌렀다면  좋아요를 삭제
+            return new ResponseEntity<String>("Like removed", HttpStatus.OK);
+        } else if(isLiked == 0){
+        	service.insertLike(vo); // 아닐시 좋아요 추가
+            return new ResponseEntity<String>("Like added", HttpStatus.OK);
         } else {
-        	service.insertLike(vo);
-            return new ResponseEntity<>("Like added", HttpStatus.OK);
+        	return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // 좋아요 개수 가져오기
     @GetMapping("/count/{boardno}")
     public ResponseEntity<Integer> countLikes(@PathVariable int boardno) {
-        log.info("countLikes... " + boardno);
+        log.info("좋아요 개수 가져오기... " + boardno);
         int count = service.countLikes(boardno);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

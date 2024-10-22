@@ -4,12 +4,17 @@
 
 <mapper namespace="org.joonzis.mapper.BoardAttachMapper">
 	<insert id="register" parameterType="org.joonzis.domain.BoardAttachVO">
-		insert into table_attach values(#{uuid}, #{uploadPath}, #{fileName}, #{boardno})
+		insert into table_attach values(#{uuid}, #{boardno}, #{uploadPath}, #{fileName})
 	</insert>
 	
 	<delete id="remove" parameterType="string">
 		delete from table_attach where uuid = #{uuid}
 	</delete>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from table_attach where boardno = #{boardno}
+	</delete>
+	
 	<select id="findByBoardno" resultType="org.joonzis.domain.BoardAttachVO">
 	 	select * from table_attach where boardno = #{boardno}
 	</select>

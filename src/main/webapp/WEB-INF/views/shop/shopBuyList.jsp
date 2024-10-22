@@ -60,6 +60,10 @@
             <label for="orderAddr">주소</label>
             <input type="text" id="orderAddr" name="orderAddr" required>
         </div>
+        <div>
+        <label>정보 저장</label>
+        <input type="checkbox" name="userCheck" value="1">
+        </div>
         <div class="form-group">
             <label for="userDeposit">계좌번호</label>
             <input type="text" id="userDeposit" name="userDeposit" required>

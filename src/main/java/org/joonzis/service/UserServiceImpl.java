@@ -1,10 +1,12 @@
 package org.joonzis.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.joonzis.domain.UserVO;
 import org.joonzis.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
 
@@ -89,7 +91,15 @@ public class UserServiceImpl implements UserService {
 	// 유저 정보 업데이트
 	@Override
 	public int updateUserInfo(UserVO vo) {
-		return userMapper.updateUserInfo(vo);
+		log.warn("유저정보 업데이트 서비스 @@@@@@@@@@@@@@@@" + vo);
+		log.warn("유저정보 업데이트 서비스 @@@@@@@@@@@@@@@@" + vo.getUserDate());
+		LocalDate localDate = LocalDate.of(1900,01,01);
+		Date dt = Date.valueOf(localDate);
+		log.warn("데이트 객체 결과 : " + dt);
+		
+		int result = userMapper.updateUserInfo(vo);
+		log.warn("유저정보 업데이트 서비스 결과 @@@@@@@@@@@@@@@@" + result);
+		return result;
 	}
 	
 	// 유저 정보 조회 ( by.mno )

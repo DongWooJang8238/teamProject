@@ -27,6 +27,7 @@
             </div>
         </section>
 
+<<<<<<< HEAD
         <!-- 구매자 정보 섹션 -->
         <section class="buyer-info-section">
             <h2>구매자 정보</h2>
@@ -49,6 +50,32 @@
                 </div>
             </form>
         </section>
+=======
+    <!-- 구매자 정보 섹션 -->
+    <section class="buyer-info-section">
+        <h2>구매자 정보</h2>
+        <div class="form-group">
+            <label for="orderName">이름</label>
+            <input type="text" id="orderName" name="orderName" value="${uvo.userName}" required>
+        </div>
+        <div class="form-group">
+            <label for="orderPhone">전화번호</label>
+            <input type="tel" id="orderPhone" name="orderPhone" value="${uvo.userPhonenumber}" required>
+        </div>
+        <div class="form-group">
+            <label for="orderAddr">주소</label>
+            <input type="text" id="orderAddr" name="orderAddr" value="${uvo.userAddress}" required>
+        </div>
+        <div>
+        <label>정보 저장</label>
+        <input type="checkbox" name="userCheck" value="1">
+        </div>
+        <div class="form-group">
+            <label for="userDeposit">계좌번호</label>
+            <input type="text" id="userDeposit" name="userDeposit" required>
+        </div>
+    </section>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 
         <!-- 결제 정보 섹션 -->
         <section class="payment-info-section">

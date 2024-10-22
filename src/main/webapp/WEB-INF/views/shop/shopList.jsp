@@ -12,14 +12,40 @@
 
 	<jsp:include page="../layout/header.jsp" />
 
-	<h1>ShopList</h1>
-
-	<div class="sidebar">
+	<div class="select-body">
+		<label>검색</label>
+		<select name="selectOption">
+			<option value="title">제목</option>
+			<option value="writer">작가</option>
+		</select>
+		<input type="search" name="selectBook" placeholder="제목으로 검색">
+		<button onclick="selectBookShoping()">🔍</button>
+	</div>
+	
+	<div class="category-body">
+		<label>장르</label>
+		소설<input type="checkbox" name="gno" value="1">
+		역사<input type="checkbox" name="gno" value="2">
+		과학<input type="checkbox" name="gno" value="3">
+		예술<input type="checkbox" name="gno" value="4">
+		철학<input type="checkbox" name="gno" value="5">
+		자기계발<input type="checkbox" name="gno" value="6">
+		기술/공학<input type="checkbox" name="gno" value="7">
+		경제/경영<input type="checkbox" name="gno" value="8">
+		사회과학<input type="checkbox" name="gno" value="9">
+		종교<input type="checkbox" name="gno" value="10">
+	</div>
+	<!-- <div class="sidebar">
 		<h3>카테고리</h3>
 		<a href="0">펑펑</a> <a href="1">소설</a> <a href="2">역사</a> <a href="3">과학</a>
 		<a href="4">예술</a> <a href="5">철학</a> <a href="6">자기계발</a> <a href="7">기술/공학</a>
 		<a href="8">경제/경영</a> <a href="9">사회과학</a> <a href="10">종교</a>
+<<<<<<< HEAD
 	</div>
+=======
+		<hr>
+	</div> -->
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 
 	<div class="panel-body">
 		<c:forEach var="vo" items="${list}">

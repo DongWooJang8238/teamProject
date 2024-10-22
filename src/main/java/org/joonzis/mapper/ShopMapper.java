@@ -7,6 +7,8 @@ import org.joonzis.domain.BookVO;
 import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
+import org.joonzis.domain.SelectDTO;
+import org.joonzis.domain.UserVO;
 
 public interface ShopMapper {
 	// 책 목록 리스트
@@ -39,4 +41,19 @@ public interface ShopMapper {
 	public int insertOrderBookList(OrderBookListVO vo);
 	// 주문 완료 후 장바구니 데이터 삭제
 	public int deleteCartAll(int mno);
+<<<<<<< HEAD
+=======
+	// 주문 상세 정보 조회 ( 상세 페이지 )
+	public OrderDetailVO selectOrderDetailByMno(int mno);
+	// 주문 상세 정보 조회 ( 결제 후 상세 페이지 )
+	public OrderDetailVO selectOrderDetailByOdno(int odno);
+	// 찜 리스트 추가
+	public int cuNext(BookBuyListVO bblvo);
+	// 찜 리스트 조회
+	public int selectCuNext(BookBuyListVO bblvo);
+	// 유저 정보 변경 ( check 선택 시 )
+	public int checkUserUpdate(UserVO uservo);
+	// 책 데이터 검색
+	public List<BookVO> getBookListSelect(SelectDTO sel);
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 }

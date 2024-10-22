@@ -25,4 +25,7 @@ public interface BoardService {
 	// 첨부 파일 리스트
 	public List<BoardAttachVO> getAttachList(int boardno);
 	
+	// 좋아요 수 조회
+	public int getLikeCount(int boardno);
+	
 }

@@ -13,7 +13,7 @@
 		<header>
 			<div class="header-container">
 				<div class="logo">
-					<a href="/"> <img src="logo.png" alt="Logo">${vo }
+					<a href="/"> <img src="/resources/images/PAGE_GROUND_Text.png" alt="Logo">
 					</a>
 				</div>
 				<div class="user-options">
@@ -24,7 +24,7 @@
 					<button type="button" id="myPage">마이페이지</button>
 					<button id="search" onclick="toggleCart()">🔍</button>
 					<button id="cart" onclick="goToCart()">🛒</button>
-					<input type="hidden" id="userId" name="userId" value="${vo }">
+					<input type="hidden" id="mno" name="mno" value="${vo.mno }">
 				</div>
 			</div>
 		</header>

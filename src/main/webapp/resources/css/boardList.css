@@ -112,3 +112,13 @@ a:hover {
         border-bottom: none;
     }
 }
+.sidebar {
+    width: 200px; /* 사이드바의 너비 */
+    background-color: #ffffff; /* 사이드바 배경색 */
+    padding: 20px; /* 패딩 추가 */
+    position: absolute; /* 절대 위치로 설정 */
+    top: 150px; /* 헤더 아래 위치 (헤더 높이에 따라 조정) */
+    bottom: 120px; /* 푸터 위 위치 (푸터 높이에 따라 조정) */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+}
+

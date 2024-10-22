@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -197,6 +198,7 @@
 			</div>
 
 			<div class="input-group">
+<<<<<<< HEAD
 				<label for="phone">전화번호</label> <input type="tel" id="phone"
 					name="phone" placeholder="전화번호 ( ' - ' 제외 )" maxlength="11"
 					required>
@@ -205,6 +207,18 @@
 			<div class="input-group">
 				<label for="birthdate">생년월일</label> <input type="date"
 					id="birthdate" name="birthdate" required>
+=======
+				  <label for="userDate">생년월일:</label>
+				  <c:choose>
+				  	<c:when test="${not empty result.userDate }">
+	     			  <input type="date" id="userDate" name="userDate" value="${result.userDate }" min="1900-01-01" max="2024-12-31" required>
+				  	</c:when>
+				  	<c:otherwise>
+	     			  <input type="date" id="userDate" name="userDate" value="1900-01-01" min="1900-01-01" max="2024-12-31" required>
+				  	</c:otherwise>
+				  
+				  </c:choose>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 			</div>
 			<div class="sidebar">
 				<h3>마이페이지</h3>

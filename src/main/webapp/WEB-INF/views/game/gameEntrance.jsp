@@ -12,6 +12,10 @@
 <jsp:include page="../layout/header.jsp"></jsp:include>
 
  <input type="hidden" class="userMno" value="${mno}" />
+<<<<<<< HEAD
+=======
+ <input type="hidden" class="alertMessage" value="${alertMessage}" />
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
  <!-- 씨큐리티 적용시 받아오기. -->
  
 <div class="button-container">
@@ -24,6 +28,10 @@
 </div>    
 
    <jsp:include page="../layout/footer.jsp"></jsp:include>
+<<<<<<< HEAD
 	<script type="text/javascript" src="../resources/js/gameEntrance.js"></script>
+=======
+	<script type="text/javascript" src="../resources/js/game/gameEntrance.js"></script>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 </body>
 </html>

@@ -57,4 +57,9 @@
 			boardno = #{boardno}
 	</update>
 	
+	<!-- 좋아요 수 조회 -->
+	<select id="getLikeCount" parameterType="int" resultType="int">
+		select count(*) from table_likes where boardno = #{boardno}
+	</select>
+	
 </mapper>

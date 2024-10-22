@@ -1,7 +1,6 @@
 package org.joonzis.controller;
 
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,13 +8,12 @@ import java.util.List;
 import java.util.Random;
 
 import org.joonzis.domain.GameVO;
-import org.joonzis.domain.UserVO;
 import org.joonzis.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,16 +26,13 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/game/*")
 public class GameController {
 	
-	
 	@Autowired
 	private GameService gameservice;
-	
 	
 	//game entrance page open.
 	@GetMapping("/entrance")
 	public String entrance(@RequestParam("mno") int mno, Model model) {
 		log.info("entrance...");
-		
 		
 		model.addAttribute("mno", mno);
 		return "/game/gameEntrance";
@@ -50,7 +45,7 @@ public class GameController {
         model.addAttribute("mno", mno);
         return "/game/JenreCheck";  
     }
-	
+	@Transactional
 	@GetMapping("/gameDone")
 	public String gameDone(@RequestParam("mno") int mno, Model model) {
 		log.info("gameDone.....");
@@ -61,7 +56,7 @@ public class GameController {
 		model.addAttribute("mno", mno);
 		int userCheck = gameservice.userCheck(mno);
 		timeCheck = gameservice.pointGetCheck(mno);
-		log.warn("어으 존나 셔  ......................."+timeCheck);
+		log.warn("어으  셔  ......................."+timeCheck);
 		Timestamp currentDate = new Timestamp(System.currentTimeMillis());
 
 
@@ -81,23 +76,24 @@ public class GameController {
             differenceInHours = differenceInMinutes / 60;
 
             System.out.println("현재 날짜와 오라클 날짜의 차이: " + differenceInHours + "시간");
-            
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
-		
         
 		if(userCheck ==0) {
 			gameservice.insertUser(mno);
-			
 			result = gameservice.gameDone(mno);
-		}else{
+		} else {
 			log.warn("gameDonepagetest" + timeCheck);
-			if(differenceInHours > 1.0 ) {
+			if (differenceInHours > 12.0) {
 				result = gameservice.gameDone(mno);
-			}else {
+				System.out.println("포인트 부여 성공" + result);
+				result = gameservice.updatePGdate(mno);
+			} else {
+				 System.out.println("다음 포인트 획득 가능 시간은 "+(12-differenceInHours)+" 시간 입니다.");
+				 System.out.println(differenceInHours);
+				 model.addAttribute("alertMessage", "다음 포인트 획득 가능 시간은 "+(12-differenceInHours)+" 시간 입니다." );
 				return "/game/gameEntrance";
 			}
 		}
@@ -186,6 +182,8 @@ public class GameController {
 		model.addAttribute("quest", quest);
 		model.addAttribute("mno", mno);
 		model.addAttribute("questList", list);
+		model.addAttribute("questNo", 1);
+		
 		return "/game/nomalplay";
 	}
 	

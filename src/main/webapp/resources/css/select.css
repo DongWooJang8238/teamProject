@@ -1,0 +1,22 @@
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            display: block;
+            width: 7cm;
+            height: 5cm;
+            margin: 20px auto;
+            font-size: 20px;
+            cursor: pointer;
+        }

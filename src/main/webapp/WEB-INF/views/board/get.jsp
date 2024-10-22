@@ -9,18 +9,11 @@
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-	<div class="page-header">
-		<h1>게시글 화면</h1>
-	</div>
 	<div class="panel-body">
 		<form method="POST">
 			<table>
-				<tbody>
-					<tr>
-						<th>글 번호</th>
-						<td><input type="text" name="boardno" value="${vo.boardno}"
-							readonly></td>
-					</tr>
+				<tbody><input type="hidden" name="boardno" value="${vo.boardno}"
+							readonly>
 					<tr>
 						<th>제목</th>
 						<td><input type="text" name="title" value="${vo.title }"
@@ -38,7 +31,7 @@
 					</tr>
 				</tbody>
 			</table>
-		
+		</form>
 		<div class="file-container">
    <div class="file-header">
       <div class="file-title">
@@ -52,10 +45,12 @@
    </div>
 	</div>
 	<div id="like-section">
-        <button id="like-btn" data-boardno="${boardno}" data-mno="${mno}">
+        <div id="like-count">
+        <h1 id="like-countMy">${likecount}</h1>
+        </div>
+        <button id="like-btn" data-boardno="${vo.boardno}" data-mno="${vo.mno}">
             좋아요
         </button>
-        <span id="like-count">${likeCount}</span>
     </div>
 		<div class="panel-body-btns">
 			<button type="button" class="btn btn-sec" id="modifyBtn">수정</button>			
@@ -92,7 +87,7 @@
 			</div>
 		</div>
 	</div>
-	</form>
+	
 	<div class="panel-footer">
 		<div class="panel-footer-body">
 			<ul class="chat">
@@ -101,8 +96,15 @@
 						<div class="chat-header">
 							<strong class="primary-font">작성자</strong> <small
 								class="pull-right">0000-00-00</small>
+								<!-- 댓글 좋아요 버튼 및 개수 추가 -->
+					<div class="reply-like-section">
+						<div class="reply-like-count" id="reply-like-count-10">0</div> <!-- 기본 값 0 -->
+						<button type="button" class="reply-like-btn" data-replyno="10">좋아요</button>
+					</div>
 						</div>
+						
 						<p>내용</p>
+						
 					</div>
 				</li>
 			</ul>
@@ -137,16 +139,7 @@
 							</p>
 						</div>
 					</li>
-					<li>
-						<div>
-							<div>
-								<span class="modal-font">등록 날짜</span>
-							</div>
-							<p>
-								<input type="text" name="modalreplydate">
-							</p>
-						</div>
-					</li>
+						<input type="hidden" name="modalreplydate">
 				</ul>
 			</div>
 			<div class="modal-footer">
@@ -157,9 +150,10 @@
 		</div>
 		
 	</div>
-	
+	<jsp:include page="../layout/footer.jsp" />
 	<script type="text/javascript" src="/resources/js/board/reply.js"></script>
 	<script type="text/javascript" src="/resources/js/board/get.js"></script>
 	<script type="text/javascript" src="/resources/js/board/like.js"></script>
+	<script type="text/javascript" src="/resources/js/board/commentlike.js"></script>
 </body>
 </html>

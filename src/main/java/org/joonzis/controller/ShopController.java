@@ -10,6 +10,11 @@ import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
 import org.joonzis.domain.PageDTO;
+<<<<<<< HEAD
+=======
+import org.joonzis.domain.SelectDTO;
+import org.joonzis.domain.UserVO;
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 import org.joonzis.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +40,7 @@ public class ShopController {
 	@Autowired
 	private ShopService service;
 	
+<<<<<<< HEAD
 //	// 쇼핑 리스트 이동
 //	@GetMapping("/list")
 //	public String list(Model model) {
@@ -46,6 +52,26 @@ public class ShopController {
 //		
 //		return "/shop/shopList";
 //	}
+=======
+	@Autowired
+	private UserService uservice;
+	
+	// 쇼핑 리스트 이동
+	@GetMapping("/listCe")
+	public String list(Model model, int[] checkCategorys) {
+		for (int i = 0; i < checkCategorys.length; i++) {
+			log.warn(checkCategorys);
+		}
+		
+		log.info("쇼핑 리스트 목록..");
+
+		model.addAttribute("list", service.getBookList());
+		
+		log.info("쇼핑 리스트 결과.. : " + model);
+		
+		return "/shop/shopList";
+	}
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	
 	// 쇼핑 리스트 이동 ( 페이징 / 카테고리 선택 )
 	@GetMapping("/list")
@@ -77,15 +103,49 @@ public class ShopController {
 		return "/shop/shopList";
 	}
 	
+<<<<<<< HEAD
+=======
+	// 쇼핑 리스트 이동 ( 검색 )
+	@GetMapping("/listSelect")
+	public String listSelect(String selectOption, String selectValue, Model model) {
+		selectValue = "%" + selectValue + "%";
+		log.warn("검색 옵션 : " + selectOption);
+		log.warn("검색 내용 : " + selectValue);
+		SelectDTO sel = new SelectDTO(selectOption, selectValue);
+		
+	 	model.addAttribute("list", service.getBookListSelect(sel));
+		return "/shop/shopList";
+	}
+	@GetMapping("/goInsert")
+	public String shopGoInsert() {
+		log.warn("인서트 드가좌..");
+		return "/shop/shopGetInsert";
+	}
+	
+	@GetMapping("/insert")
+	public String shopInsert(BookVO vo) {
+		log.warn("인서트 드가좌.." + vo);
+		int result = service.insertShopBook(vo);
+		log.warn("인서트 결과 result...." + result);
+		return "redirect:/shop/list";
+	}
+	
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	// 상품 보기 페이지 이동
 	@GetMapping("/get")
 	public String get(int bno, Model model) {
 		log.info("상품 보기 페이지..");
 		
 		// 모델에 담기
+<<<<<<< HEAD
 		BookVO vo = service.getBookOne(bno);
 		model.addAttribute("vo", vo);
 		// 모델 결과
+=======
+		model.addAttribute("bvo", vo);
+		model.addAttribute("bc", bookContent);
+		model.addAttribute("list", list);
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 		log.info(vo.getBookcover());
 		
 		return "/shop/shopGet";
@@ -161,8 +221,8 @@ public class ShopController {
 	// 결제완료 후 결제결과 페이지 이동
 	@Transactional
 	@ResponseBody
-	@PostMapping(value = "/buySuccess", produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> buySuccess(@RequestBody OrderDetailVO odvo) {
+	@PostMapping(value = "/buySuccess/{check}", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> buySuccess(@RequestBody OrderDetailVO odvo, @PathVariable("check") int check) {
 		log.warn("컨트롤러 구매성공시 넘어온 데이터.." + odvo.getMno());
 		// mno 데이터가 잘 넘어왔다면, mno 저장
 		int mno = odvo.getMno();
@@ -171,8 +231,12 @@ public class ShopController {
 		log.warn("컨트롤러 구매성공시 넘어온 데이터.." + odvo.getOrderPhone());
 		log.warn("컨트롤러 구매성공시 넘어온 데이터.." + odvo.getOrderAddr());
 		log.warn("컨트롤러 구매성공시 넘어온 데이터.." + odvo.getPoint());
-		log.warn("컨트롤러 구매성공시 넘어온 데이터.." + odvo.getUserDeposit());
-		int result = service.insertOrderDetail(odvo);
+		if(odvo.getUserDeposit() == "") {
+			log.warn("컨트롤러 구매성공시 넘어온 데이터.. ( 가공 전 )" + odvo.getUserDeposit());
+			odvo.setUserDeposit("미입력");
+		}
+		log.warn("컨트롤러 구매성공시 넘어온 데이터.. ( 가공 후 )" + odvo.getUserDeposit());
+		int result = service.insertOrderDetail(odvo, check);
 		log.warn("컨트롤러 상세주문정보 입력 체크.." + result);
 		// 저장이 잘 됬다면 odvo2 셀렉트 후 저장
 		int odno = service.selectOrderDetail(mno);
