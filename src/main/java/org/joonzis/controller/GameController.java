@@ -26,16 +26,13 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/game/*")
 public class GameController {
 	
-	
 	@Autowired
 	private GameService gameservice;
-	
 	
 	//game entrance page open.
 	@GetMapping("/entrance")
 	public String entrance(@RequestParam("mno") int mno, Model model) {
 		log.info("entrance...");
-		
 		
 		model.addAttribute("mno", mno);
 		return "/game/gameEntrance";
@@ -79,16 +76,13 @@ public class GameController {
             differenceInHours = differenceInMinutes / 60;
 
             System.out.println("현재 날짜와 오라클 날짜의 차이: " + differenceInHours + "시간");
-            
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-        
 		if(userCheck ==0) {
 			gameservice.insertUser(mno);
-
 			result = gameservice.gameDone(mno);
 		} else {
 			log.warn("gameDonepagetest" + timeCheck);
@@ -264,8 +258,5 @@ public class GameController {
 		
 		return "/game/easyplay";
 	}
-	
-	
-	
 
 }
