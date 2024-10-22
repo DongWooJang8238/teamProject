@@ -37,19 +37,15 @@
 	</div>
 	<!-- <div class="sidebar">
 		<h3>카테고리</h3>
-		<hr>
-		<a href="0" filterType="bno">초기화</a> 
-		<a filterType="sellcount">랭킹순</a>
-		<a filterType="avgrating">평점순</a>
-		<a filterType="likecount">인기순</a>
-		<a filterType="maxbookprice">높은가격순</a> 
-		<a filterType="minbookprice">낮은가격순</a> 
-		<hr>
-		<a href="1">소설</a> <a href="2">역사</a> <a href="3">과학</a>
+		<a href="0">펑펑</a> <a href="1">소설</a> <a href="2">역사</a> <a href="3">과학</a>
 		<a href="4">예술</a> <a href="5">철학</a> <a href="6">자기계발</a> <a href="7">기술/공학</a>
 		<a href="8">경제/경영</a> <a href="9">사회과학</a> <a href="10">종교</a>
+<<<<<<< HEAD
+	</div>
+=======
 		<hr>
 	</div> -->
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 
 	<div class="panel-body">
 		<c:forEach var="vo" items="${list}">
@@ -74,10 +70,7 @@
 
 			</div>
 		</c:forEach>
-	<!-- 추후 시큐리티 적용 ( 관리자 : 판매자 전용 ) -->
-	<button onclick="goShopInsert()">상품 등록</button>
 	</div>
-	
 
 	<!-- page -->
 	<div class="page-wrap">
@@ -100,5 +93,5 @@
 
 	<jsp:include page="../layout/footer.jsp" />
 </body>
-<script type="text/javascript" src="/resources/js/shop/shopList.js"></script>
+<script type="text/javascript" src="/resources/js/shopList.js"></script>
 </html>

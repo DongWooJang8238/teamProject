@@ -26,7 +26,7 @@ public interface UserMapper {
 	// 새 비밀번호 설정(수정페이지 가기 전)
 	public int updatePw(UserVO vo);
 	
-	// 비밀번호 재확인 
+	// 비밀번호 재확인
 	public UserVO checkPassword(UserVO vo);
 	
 	// 마이페이지 아이디 검색

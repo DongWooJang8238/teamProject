@@ -30,7 +30,11 @@
 
     
 <jsp:include page="../layout/footer.jsp"></jsp:include>
+<<<<<<< HEAD
+	<script type="text/javascript" src="/resources/js/JenreCheck.js"></script>
+=======
 	<script type="text/javascript" src="/resources/js/game/JenreCheck.js"></script>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 
 </body>
 </html>

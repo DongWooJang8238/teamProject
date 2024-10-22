@@ -2,10 +2,8 @@ package org.joonzis.controller;
 
 import org.joonzis.domain.AproveResponse;
 import org.joonzis.domain.BookVO;
-import org.joonzis.domain.OrderDetailVO;
 import org.joonzis.domain.ReadyResponse;
 import org.joonzis.domain.SessionUtils;
-import org.joonzis.domain.UserVO;
 import org.joonzis.service.KakaoPayService;
 import org.joonzis.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,19 +69,7 @@ public class OrderController {
     @GetMapping("/orderDetail")
     public String orderDetail(int mno, Model model) {
     	log.warn("오더컨트롤러 오더디테일.. " + mno);
-    	int odno = service.selectOrderDetailOdno(mno);
-    	
-    	log.error("---odno---------" + odno);
-    	
-    	
-    	OrderDetailVO ovo = new OrderDetailVO();
-    	ovo = service.selectOrderDetailByOdno(odno);
-    	log.error("------------" + ovo);
-    	
-    	
-    	
-    	log.warn("컨트롤러..오더디테일..mno.." + service.selectOrderDetailByOdno(odno).getMno());
-    	model.addAttribute("vo", service.selectOrderDetailByOdno(odno));
+    	model.addAttribute("vo", service.selectOrderDetail(mno));
     	return "/order/orderDetail";
     }
     

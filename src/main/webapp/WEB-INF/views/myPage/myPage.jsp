@@ -56,12 +56,19 @@ th, td {
 
 			<div class="body-content">
 				<div class="header">
+<<<<<<< HEAD
+					<h1>계정 정보 </h1><button type="button" onclick="goDetailMyPage()">></button> 
+					<h2>대표 이메일 ${result.userEmail }</h2>
+					<h2>아이디  ${result.userId }</h2>
+					<h2>이름 ${result.userName }</h2>
+=======
 					<h1>계정 정보</h1>
 					<button type="button" onclick="goDetailMyPage()">></button>
 					<h2>대표 이메일 ${result.userEmail}</h2>
 					<input type="text" name="email" value="${domain}">
 					<h2>아이디 ${result.userId}</h2>
 					<h2>이름 ${result.userName}</h2>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 				</div>
 
 				<div class="box-container">
@@ -151,6 +158,6 @@ th, td {
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
-<script type="text/javascript" src="/resources/js/myPage/myPage.js"></script>
-<script type="text/javascript" src="/resources/js/myPage/sidebar.js"></script>
+<script type="text/javascript" src="/resources/js/myPage.js"></script>
+<script type="text/javascript" src="/resources/js/sidebar.js"></script>
 </html>

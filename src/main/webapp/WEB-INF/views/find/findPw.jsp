@@ -140,5 +140,5 @@ body {
 		</form>
 	</div>
 </body>
-<script type="text/javascript" src="/resources/js/find/findPw.js"></script>
+<script type="text/javascript" src="/resources/js/findPw.js"></script>
 </html>

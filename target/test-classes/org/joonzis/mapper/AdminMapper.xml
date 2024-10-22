@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.joonzis.mapper.AdminMapper">
+<update id="userUpdate" parameterType="org.joonzis.domain.UserVO" >
+	update TBL_USER set 
+	 USERNAME= #{USERNAME} ,
+	 USERID = #{USERID} , 
+	 USERPW = #{USERPW} , 
+	 USERADDRESS = #{USERADDRESS} , 
+	 USERPHONENUMBER = #{USERPHONENUMBER} , 
+	 USEREMAIL = #{USEREMAIL} , 
+	 USERGENDER = #{USERGENDER} , 
+	 USERROLE = #{USERROLE} , 
+	 USERPOINT = #{USERPOINT} , 
+	 NICKNAME = #{NICKNAME} , 
+	 USERICON = #{USERICON} ,
+	 USERDATE = #{USERDATE}
+	 where mno = #{mno}
+</update>
+
+
+	
+</mapper>

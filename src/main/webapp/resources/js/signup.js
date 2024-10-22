@@ -236,8 +236,8 @@ function signup() {
 	
 	
 	alert("회원가입을 성공하였습니다.");
-	f.action = "/User/signup" ;
 	f.submit();
+	f.action = "/User/signup" ;
 	
 }
 

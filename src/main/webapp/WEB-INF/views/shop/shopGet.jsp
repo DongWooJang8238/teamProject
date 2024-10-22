@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +46,11 @@
 			</div>
 		</div>
 	</div>
-	<br>
-	<hr>
-	<br>
+
 	<!-- 본문 영역 -->
+<<<<<<< HEAD
+
+=======
 	<div style="text-align: center;">
 		<h2>[상세보기]</h2>
 		<div class="product-image">
@@ -61,6 +61,7 @@
 	<br>
 	<hr>
 	<br>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	<!-- 리뷰(댓글) 영역 -->
 	<div class="review-section">
 		<!-- 댓글 영역 -->
@@ -79,11 +80,14 @@
 									<strong class="primary-font">작성자1</strong> <small
 										class="pull-right">2024-10-10</small>
 								</div>
+<<<<<<< HEAD
+=======
 								<div class="stars" data-rating="4">
 									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
 									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
 									<span class="star">&#9733;</span>
 								</div>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 								<p>이 책 정말 재밌어요!</p>
 								<!-- 예시 댓글에 사용할 이미지 -->
 								<img src="${bvo.bookcover}" alt="예시 이미지" class="comment-image"
@@ -96,6 +100,8 @@
 		</div>
 
 		<div class="review-header">
+<<<<<<< HEAD
+=======
 			<img id="imagePreview" class="image-preview" alt="첨부한 이미지 미리보기" />
 		</div>
 
@@ -107,17 +113,26 @@
 		</div>
 
 		<div class="review-input">
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 			<div class="file-upload">
 				<input type="file" id="imageUpload" accept="image/*"
 					onchange="previewImage(event)" /> <label for="imageUpload">이미지
 					첨부</label>
 			</div>
+			<img id="imagePreview" class="image-preview" alt="첨부한 이미지 미리보기" />
+		</div>
 
+<<<<<<< HEAD
+		<div class="review-input">
+			<input type="text" class="user-id" placeholder="사용자 ID" />
+			<textarea class="review-body" placeholder="리뷰 내용을 입력하세요..."></textarea>
+=======
 			<input type="text" class="user-id" placeholder="사용자 ID" />
 			<textarea class="review-body" placeholder="리뷰 내용을 입력하세요..."></textarea>
 			<input type="hidden" name="ReviewImgUuid"> <input
 				type="hidden" name="ReviewImgName">
 
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 			<button class="submit-review">리뷰 달기</button>
 		</div>
 	</div>
@@ -155,6 +170,5 @@
 	<button onclick="goToCart();">장바구니 이동</button>
 	</div>
 </body>
-<script type="text/javascript" src="/resources/js/shop/shopGet.js"></script>
-<script type="text/javascript" src="/resources/js/shop/shopReview.js"></script>
+<script type="text/javascript" src="/resources/js/shopGet.js"></script>
 </html>

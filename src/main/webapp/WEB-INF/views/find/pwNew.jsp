@@ -140,5 +140,5 @@ body {
 		</form>
 	</div>
 </body>
-<script type="text/javascript" src="/resources/js/find/newPw.js"></script>
+<script type="text/javascript" src="/resources/js/newPw.js"></script>
 </html>

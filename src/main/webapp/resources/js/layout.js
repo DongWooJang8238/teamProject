@@ -53,15 +53,16 @@ function shopListGo() {
 	// 상단바에서 쇼핑리스트로 이동 시 gener = 0, pageNum = 1 으로 전송
 	location.href = '/shop/list?gener=0';
 }
-function shopUsedList() {
-	location.href = '/used/list';
-}
+
 function goToCart() {
 	location.href = '/shop/cartListBuy?mno=' + 1;
 }
+<<<<<<< HEAD
+=======
 function goBoard() {
 	location.href = '/board/list?pageNum=1&amount=10';
 }
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 function goGame(){
 	location.href = '/game/entrance?mno='+1;
 }

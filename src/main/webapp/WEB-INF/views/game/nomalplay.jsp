@@ -43,6 +43,8 @@
             padding: 10px 20px; /* 버튼 패딩 증가 */
             cursor: pointer; /* 마우스 커서 변경 */
         }
+<<<<<<< HEAD
+=======
         #backButton {
             bottom: 20px;
             right: 0;
@@ -53,16 +55,24 @@
             border-radius: 5px;
             cursor: pointer;
         }
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
     </style>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
+<<<<<<< HEAD
+	 <h1>게임 모드: easy</h1>
+    <h2>장르: ${gameJenre}</h2>
+
+<input type="hidden" class="userMno" value="${mno}" />
+=======
 	 <h1>게임 모드: nomal</h1>
     <h2>장르: ${gameJenre}</h2>
 
 	<input type="hidden" class="userMno" value="${mno}" />
 
     
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	<div id="questContainer">
         <c:forEach var="gvo" items="${questList}">
             <div class="quest" style="display:none;">
@@ -76,6 +86,12 @@
         <input type="text" id="answerInput" placeholder="정답 입력" />
         <button type="button" id="submitButton" onclick="checkAnswer()">정답 제출</button>
     </div>
+<<<<<<< HEAD
+	
+<jsp:include page="../layout/footer.jsp"></jsp:include>
+
+		<script type="text/javascript" src="/resources/js/nomalplay.js"></script>
+=======
     
 	<div>	
    		<button id="backButton" class="backButton"  onclick="goBack()">뒤로가기</button>
@@ -84,6 +100,7 @@
 <jsp:include page="../layout/footer.jsp"></jsp:include>
 
 		<script type="text/javascript" src="/resources/js/game/nomalplay.js"></script>
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	<script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("answerInput").addEventListener("keypress", function(event) {

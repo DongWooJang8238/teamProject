@@ -63,45 +63,9 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int insertShopBook(BookVO vo) {
-		log.warn("책 데이터 인서트.." + vo);
-		return mapper.insertShopBook(vo);
-	}
-	
-	@Override
 	public BookVO getBookOne(int bno) {
 		log.info("서비스 책 단일 데이터 조회.." + bno);
-		BookVO vo = mapper.getBookOne(bno);
-		vo.setLikeCount(mapper.getTotalLikeByBno(bno));
-		log.warn("서비스 책 단일 데이터 조회 결과.. " + vo);
-		log.warn("서비스 단일 데이터 조회 좋아요 수 : " + vo.getLikeCount());
-		return vo;
-	}
-	
-	@Override
-	public String getBookContent(int bno) {
-		log.warn("서비스 책 컨텐트 조회.." + bno);
-		return mapper.getBookContent(bno);
-	}
-	
-	@Override
-	public List<String> getBookContentImg(int bno) {
-		log.warn("서비스 책 이미지 조회" + bno);
-		return mapper.getBookContentImg(bno);
-	}
-	
-	@Override
-	public int updateAvgRating(int bno) {
-		log.warn("업데이트 전 .. " + bno);
-		double avgRating = mapper.selectAvgRating(bno);
-		log.warn("업데이트 전 avg 결과.. " + avgRating);
-		BookVO vo = new BookVO();
-		vo.setAvgRating(avgRating);
-		vo.setBno(bno);
-		
-		log.warn("업데이트 전 vo에 avg 저장.. " + vo.getAvgRating());
-		
-		return mapper.updateAvgRating(vo);
+		return mapper.getBookOne(bno);
 	}
 	
 	@Override
@@ -154,27 +118,21 @@ public class ShopServiceImpl implements ShopService {
 		}
 		log.warn("서비스 장바구니 삭제 mno .. " + vo.getMno());
 		
+<<<<<<< HEAD
+		result = mapper.deleteCartAll(vo.getMno());
+		log.warn("서비스 장바구니 삭제 결과.." + result);
+=======
 		// 장바구니에 담긴 데이터 삭제
 		int deleteCart = mapper.deleteCartAll(vo.getMno());
 		log.warn("서비스 장바구니 삭제 결과.." + deleteCart);
+>>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 		return result;
 	}
 	
 	@Override
-	public int selectOrderDetailOdno(int mno) {
-		return mapper.selectOrderDetailOdno(mno);
-	}
-	
-	@Override
-	public OrderDetailVO selectOrderDetailByMno(int mno) {
+	public int selectOrderDetail(int mno) {
 		log.warn("서비스 상세 주문 셀렉트.. " + mno);
-		return mapper.selectOrderDetailByMno(mno);
-	}
-
-	@Override
-	public OrderDetailVO selectOrderDetailByOdno(int odno) {
-		log.warn("서비스 상세 주문 셀렉트.. " + odno);
-		return mapper.selectOrderDetailByOdno(odno);
+		return mapper.selectOrderDetailOdno(mno);
 	}
 	
 	@Override
@@ -182,6 +140,7 @@ public class ShopServiceImpl implements ShopService {
 		log.warn("서비스 인서트 주문리스트");
 		return mapper.insertOrderBookList(vo);
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public int cuNext(BookBuyListVO bblvo) {
@@ -200,4 +159,6 @@ public class ShopServiceImpl implements ShopService {
 		log.warn("서비스 상품 삭제.. : " + bno);
 		return mapper.getDeleteBook(bno);
 	}
+=======
+>>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
 }

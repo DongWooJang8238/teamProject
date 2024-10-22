@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/resources/css/shopBuy.css">
 </head>
 <body>
-<jsp:include page="../layout/header.jsp"/>
+
     <div class="payment-container">
         <h1 class="page-title">결제 정보</h1>
 
@@ -50,13 +50,14 @@
         <h2>구매자 정보</h2>
         <div class="form-group">
             <label for="orderName">이름</label>
-            <input type="text" id="orderName" name="orderName" value="${uvo.userName}" required>
+            <input type="text" id="orderName" name="orderName" required>
         </div>
         <div class="form-group">
             <label for="orderPhone">전화번호</label>
-            <input type="tel" id="orderPhone" name="orderPhone" value="${uvo.userPhonenumber}" required>
+            <input type="tel" id="orderPhone" name="orderPhone" required>
         </div>
         <div class="form-group">
+<<<<<<< HEAD
             <label for="jangsick">기본 배송지</label>
             <input type="text" id="jangsick" name="jangsick" value="${uvo.userAddress}" required readonly="readonly">
             <button type="button" onclick="addrChange();">배송지 변경</button>
@@ -64,6 +65,10 @@
         <div class="form-group" id="newAddr">
             <label for="orderAddr">변경할 배송지</label>
             <input type="text" id="orderAddr" name="orderAddr" value="${uvo.userAddress}" required>
+=======
+            <label for="orderAddr">주소</label>
+            <input type="text" id="orderAddr" name="orderAddr" required>
+>>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
         </div>
         <div>
         <label>정보 저장</label>
@@ -118,7 +123,7 @@
     </div>
 
     </div>
-<jsp:include page="../layout/footer.jsp"></jsp:include>
+
 </body>
-<script type="text/javascript" src="/resources/js/shop/shopBuyList.js"></script>
+<script type="text/javascript" src="/resources/js/shopBuyList.js"></script>
 </html>
