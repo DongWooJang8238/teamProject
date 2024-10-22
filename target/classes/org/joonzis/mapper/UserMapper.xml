@@ -75,4 +75,23 @@
 	<select id="checkPassword" parameterType="org.joonzis.domain.UserVO" resultType="org.joonzis.domain.UserVO">
 		select * from tbl_user where userid = #{userId} and userpw = #{userPw}
 	</select>
+	
+	<!--유저 정보 업데이트  -->
+	<update id="updateUserInfo" parameterType="org.joonzis.domain.UserVO">
+		update tbl_user 
+    	set
+    	useremail = #{userEmail}, useraddress = #{userAddress}, userphonenumber = #{userPhonenumber}, userdate = #{userDate}, usergender = #{userGender}
+    	where userId = #{userId}	
+	</update>
+	
+	<!-- 유저 정보 검색 (by.mno) -->
+	<select id="userSelectOne" parameterType="int" resultType="org.joonzis.domain.UserVO">
+		select * from tbl_user where mno = #{mno}
+	</select>
+	
+	<!-- 유저 탈퇴 -->
+	<delete id="deleteAccount" parameterType="String">
+		delete from tbl_user where userId = #{userId}
+	</delete>
+	
 </mapper>

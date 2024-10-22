@@ -100,10 +100,11 @@ public class ShopController {
 		BookVO bvo = service.getBookOne(bno);
 		// mno로 회원 데이터 조회
 //		UserVO uvo = service.userSelectOne(mno);
+		UserVO uvo = uservice.userSelectOne(mno);
 		// 데이터들 모델에 담아서 페이지 이동
 		model.addAttribute("bvo", bvo);
 		model.addAttribute("count", count);
-//		model.addAttribute("uvo", uvo);
+		model.addAttribute("uvo", uvo);
 		
 		return "/shop/shopBuyOne";
 	}
@@ -116,6 +117,8 @@ public class ShopController {
 	    List<BookBuyListVO> list = service.buyListSelect(mno); // 장바구니 데이터 조회
 	    Map<BookVO, Integer> orderMap = new HashMap<>(); // 책 데이터와 수량을 담을 맵
 
+	    UserVO uvo = uservice.userSelectOne(mno);
+	    
 	    for (BookBuyListVO bbvo : list) {
 	        BookVO book = service.getBookOne(bbvo.getBno()); // 책 정보 조회
 	        orderMap.put(book, bbvo.getCount()); // 책과 해당 수량을 맵에 저장
@@ -124,6 +127,7 @@ public class ShopController {
 	    }
 
 	    model.addAttribute("orderMap", orderMap); // 책과 수량을 모델에 담아서 전달
+	    model.addAttribute("uvo", uvo);
 
 	    return "/shop/shopBuyList";
 	}

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   
+   <jsp:include page="../layout/header.jsp"></jsp:include>
    <div class="page-header">
       <h1>게시글 수정 화면</h1>
    </div>

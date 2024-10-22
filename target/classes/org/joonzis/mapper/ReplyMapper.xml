@@ -4,7 +4,7 @@
 
 <mapper namespace="org.joonzis.mapper.ReplyMapper">
 	<insert id="insert" parameterType="org.joonzis.domain.ReplyVO">
-		 insert into table_comments VALUES(table_comments_seq.nextval, #{boardno}, #{mno}, #{reply}, #{replyer}, sysdate, sysdate)
+		 insert into table_comments VALUES(table_comments_seq.nextval, #{boardno}, #{reply}, #{replyer}, sysdate, sysdate)
 	</insert>
 	
 		<select id="getList" parameterType="int" resultType="org.joonzis.domain.ReplyVO">

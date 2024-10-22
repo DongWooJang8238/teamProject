@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="../layout/header.jsp" />
 	<div class="page-header">
 		<h1>게시판 등록</h1>
 	</div>
@@ -57,7 +57,7 @@
 		<button type="button" class="btn btn-fir" id="indexBtn">목록으로 이동</button>
 	</div>
 
-
+<jsp:include page="../layout/footer.jsp" />
 	<script type="text/javascript" src="/resources/js/board/register.js"></script>
 	<script type="text/javascript" src="/resources/js/board/upload.js"></script>
 </body>

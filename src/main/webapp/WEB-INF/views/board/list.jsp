@@ -8,7 +8,7 @@
 <title>board list</title>
 </head>
 <body>
-	<!-- 헤더 추가 자리 -->
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<div class="board-container">
 		<!-- 카테고리 부분 -->
 		<div class="category">

@@ -33,4 +33,13 @@ public interface UserService {
 	
 	// 아이콘 업데이트
 	public int updateIcon(UserVO vo);
+	
+	// 유저 정보 업데이트
+	public int updateUserInfo(UserVO vo);
+	
+	// 유저 정보 조회 ( by.mno )
+	public UserVO userSelectOne(int mno);
+	
+	// 유저 탈퇴
+	public int deleteAccount(String userId);
 }
