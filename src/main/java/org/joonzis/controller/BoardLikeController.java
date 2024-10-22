@@ -46,3 +46,15 @@ public class BoardLikeController {
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

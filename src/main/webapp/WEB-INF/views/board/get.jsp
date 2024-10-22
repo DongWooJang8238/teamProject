@@ -9,9 +9,6 @@
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-	<div class="page-header">
-		<h1>게시글 화면</h1>
-	</div>
 	<div class="panel-body">
 		<form method="POST">
 			<table>
@@ -99,8 +96,15 @@
 						<div class="chat-header">
 							<strong class="primary-font">작성자</strong> <small
 								class="pull-right">0000-00-00</small>
+								<!-- 댓글 좋아요 버튼 및 개수 추가 -->
+					<div class="reply-like-section">
+						<div class="reply-like-count" id="reply-like-count-10">0</div> <!-- 기본 값 0 -->
+						<button type="button" class="reply-like-btn" data-replyno="10">좋아요</button>
+					</div>
 						</div>
+						
 						<p>내용</p>
+						
 					</div>
 				</li>
 			</ul>
@@ -150,5 +154,6 @@
 	<script type="text/javascript" src="/resources/js/board/reply.js"></script>
 	<script type="text/javascript" src="/resources/js/board/get.js"></script>
 	<script type="text/javascript" src="/resources/js/board/like.js"></script>
+	<script type="text/javascript" src="/resources/js/board/commentlike.js"></script>
 </body>
 </html>

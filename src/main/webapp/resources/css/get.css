@@ -1,132 +1,217 @@
-/* 전체 페이지 스타일 */
+/* General styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: #f4f4f4;
 }
 
-/* 페이지 헤더 */
-.page-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
-/* 패널 스타일 */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.table th, .table td {
+    padding: 10px;
+}
+
 .panel-body {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 테이블 스타일 */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-th {
-    text-align: left;
-    padding: 10px;
-    background-color: #e9ecef;
-}
-
-td {
-    padding: 10px;
-}
-
-/* 버튼 스타일 */
-.btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* 댓글 영역 스타일 */
-.reply-content {
+/* File container styling */
+.file-container {
     margin-top: 20px;
 }
 
-.reply-title {
+.file-header .file-title a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.file-body {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.uploadResult ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Like section styling */
+#like-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#like-count h1 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+#like-btn {
+    background-color: #007bff;
+}
+
+#like-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Reply section styling */
+#reply {
+    margin-top: 30px;
+}
+
+.reply-title a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.reply-body .reply-font {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* 댓글 입력 필드 스타일 */
-.reply-body input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* 댓글 리스트 스타일 */
 .chat {
     list-style-type: none;
     padding: 0;
 }
 
-.chat li {
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 10px;
+.chat-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
-/* 모달 스타일 */
+.reply-like-section {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.reply-like-count {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.reply-like-btn {
+    background-color: #ff9800;
+}
+
+.reply-like-btn:hover {
+    background-color: #e68900;
+}
+
+/* Modal styling */
 #modal {
-    display: none; /* 기본적으로 숨김 */
+    display: none; /* Hidden by default */
     position: fixed;
     z-index: 1;
+    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
+    background-color: #fff;
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    border-radius: 5px;
+    width: 50%;
+    border-radius: 8px;
 }
 
-/* 모달 버튼 스타일 */
-.modal-footer .btn {
-    background-color: #007bff;
+.modal-title a {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.modal-footer .btn:hover {
-    background-color: #0056b3;
+.modal-font {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-/* 미디어 쿼리 */
-@media (max-width: 768px) {
-    .reply-body input {
-        width: 100%;
-    }
+.modal-footer button {
+    margin-right: 10px;
+}
 
-    .modal-content {
-        width: 95%;
-    }
+.panel-body-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-sec {
+    background-color: #f0ad4e;
+}
+
+.btn-sec:hover {
+    background-color: #ec971f;
+}
+
+.btn-fir {
+    background-color: #5cb85c;
+}
+
+.btn-fir:hover {
+    background-color: #449d44;
+}
+
+.btn-thi {
+    background-color: #337ab7;
+}
+
+.btn-thi:hover {
+    background-color: #286090;
+}
+
+.btn-fou {
+    background-color: #d9534f;
+}
+
+.btn-fou:hover {
+    background-color: #c9302c;
+}
+
+/* Footer */
+.panel-footer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top: 1px solid #ddd;
 }
