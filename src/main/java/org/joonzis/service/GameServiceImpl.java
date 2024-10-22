@@ -52,14 +52,7 @@ public class GameServiceImpl implements GameService{
 	@Override
 	public int updatePGdate(int mno) {
 		log.info("updatePGdate......");
-
 		return gamemapper.updatePGdate(mno);
 	}
-	
-
-	
-	
-	
-	
 
 }

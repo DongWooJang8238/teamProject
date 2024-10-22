@@ -35,27 +35,27 @@ public class reportController {
 	
 	
 	//game entrance page open.
-	@GetMapping("/Category")
+	@GetMapping("/Select")
 	public String Category(@RequestParam("mno") int mno, Model model) {
 		log.info("Category...");
 		
 		
 		model.addAttribute("mno", mno);
-		return "/report/Category";
+		return "/report/Select";
 	}
 	
 	@GetMapping("/qna")
-    public String qna(int gameMode,int mno, Model model) {
+    public String qna(int mno, Model model) {
 		log.warn("qna...............................");
         model.addAttribute("mno", mno);
         return "/report/qna";  
     }
-	@GetMapping("/oneonetwo")
-	public String oneonetwo(int gameMode,int mno, Model model) {
-		log.warn("oneonetwo...............................");
-		model.addAttribute("gameMode", gameMode);
+	@GetMapping("/directReport")
+	public String oneonetwo(int mno, Model model) {
+		log.warn("directReport...............................");
+		
 		model.addAttribute("mno", mno);
-		return "/report/oneonetwo";  
+		return "/report/directReport";  
 	}
 	
 
