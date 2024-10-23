@@ -36,7 +36,7 @@ public class ShopServiceImpl implements ShopService {
 	    });
 	    return list;
 	}
-
+	
 	@Override
 	public List<BookVO> getBookListSelect(SelectDTO sel) {
 		log.warn("서비스 책 리스트 검색..." + sel.getSelectOption() + sel.getSelectValue());
@@ -118,14 +118,11 @@ public class ShopServiceImpl implements ShopService {
 		}
 		log.warn("서비스 장바구니 삭제 mno .. " + vo.getMno());
 		
-<<<<<<< HEAD
 		result = mapper.deleteCartAll(vo.getMno());
 		log.warn("서비스 장바구니 삭제 결과.." + result);
-=======
 		// 장바구니에 담긴 데이터 삭제
 		int deleteCart = mapper.deleteCartAll(vo.getMno());
 		log.warn("서비스 장바구니 삭제 결과.." + deleteCart);
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 		return result;
 	}
 	
@@ -140,7 +137,6 @@ public class ShopServiceImpl implements ShopService {
 		log.warn("서비스 인서트 주문리스트");
 		return mapper.insertOrderBookList(vo);
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public int cuNext(BookBuyListVO bblvo) {
@@ -159,6 +155,10 @@ public class ShopServiceImpl implements ShopService {
 		log.warn("서비스 상품 삭제.. : " + bno);
 		return mapper.getDeleteBook(bno);
 	}
-=======
->>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
+
+	@Override
+	public int insertShopBook(BookVO vo) {
+		log.warn("책 데이터 인서트.." + vo);
+		return mapper.insertShopBook(vo);
+	}
 }

@@ -57,12 +57,9 @@ function shopListGo() {
 function goToCart() {
 	location.href = '/shop/cartListBuy?mno=' + 1;
 }
-<<<<<<< HEAD
-=======
 function goBoard() {
 	location.href = '/board/list?pageNum=1&amount=10';
 }
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 function goGame(){
 	location.href = '/game/entrance?mno='+1;
 }

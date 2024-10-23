@@ -206,10 +206,6 @@ public class UserController {
 		return "/myPage/myPage";
 	}
 	
-<<<<<<< HEAD
-	
-	
-=======
 	// 유저 정보 업데이트
 	@PostMapping("/updateUserInfo")
 		public String updateUserInfo(UserVO vo, Model model) {
@@ -263,5 +259,4 @@ public class UserController {
 			model.addAttribute("vo",list);
 			return "/myPage/myOrder";
 	}
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 }

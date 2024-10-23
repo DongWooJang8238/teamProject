@@ -27,7 +27,6 @@
             </div>
         </section>
 
-<<<<<<< HEAD
         <!-- 구매자 정보 섹션 -->
         <section class="buyer-info-section">
             <h2>구매자 정보</h2>
@@ -50,7 +49,6 @@
                 </div>
             </form>
         </section>
-=======
     <!-- 구매자 정보 섹션 -->
     <section class="buyer-info-section">
         <h2>구매자 정보</h2>
@@ -80,7 +78,6 @@
             <input type="text" id="userDeposit" name="userDeposit" required>
         </div>
     </section>
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 
         <!-- 결제 정보 섹션 -->
         <section class="payment-info-section">

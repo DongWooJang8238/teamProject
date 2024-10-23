@@ -14,7 +14,6 @@
 		]]>
 	</select>
 	
-<<<<<<< HEAD
 	<!-- 카테고리 별 책 리스트 조회 -->
 	<select id="getBookListGe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
 		<![CDATA[
@@ -25,9 +24,8 @@
 		where rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
-=======
 		<!-- 카테고리 별 책 리스트 조회 -->
-		<select id="getBookListGe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
+		<select id="getBookListCe" parameterType="org.joonzis.domain.Criteria" resultType="org.joonzis.domain.BookVO">
 			<![CDATA[
 			select bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
 			(select rownum rn, bno, gno, inventory, bookPrice, writer, title, publisher, shortText, isbn, bookcover, status, ordDate, avgRating, likecount, sellcount from
@@ -49,7 +47,6 @@
 			where rn > (#{pageNum} - 1) * #{amount}
 			]]>
 		</select>
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	
 	<!-- 검색 내용 조회 -->
 	<select id="getBookListSelect" parameterType="org.joonzis.domain.SelectDTO" resultType="org.joonzis.domain.BookVO">
@@ -83,6 +80,16 @@
 	<select id="getBookOne" parameterType="int" resultType="org.joonzis.domain.BookVO">
 		select * from tbl_book where bno = #{bno}
 	</select>
+	
+	<!-- 별점 평균 구하기 -->
+	<select id="selectAvgRating" parameterType="int" resultType="double">
+		select COALESCE(AVG(likescore), 0.0) from tbl_blike where bno = #{bno}
+	</select>
+	
+	<!-- 별점 평균 업데이트 -->
+	<update id="updateAvgRating" parameterType="org.joonzis.domain.BookVO">
+		update tbl_book set avgrating = #{avgRating} where bno = #{bno}
+	</update>
 	
 	<!-- 구매 리스트 저장(장바구니) -->
 	<insert id="buyList" parameterType="org.joonzis.domain.BookBuyListVO">
@@ -137,7 +144,6 @@
 	<delete id="deleteCartAll" parameterType="int">
 		delete from tbl_order where mno = #{mno}
 	</delete>
-<<<<<<< HEAD
 	<!-- 찜 리스트 추가 -->
 	<insert id="cuNext" parameterType="org.joonzis.domain.BookBuyListVO">
 		insert into tbl_bookcu values (#{mno}, #{bno})
@@ -151,6 +157,4 @@
 	<delete id="getDeleteBook" parameterType="int">
 		delete from tbl_book where bno = #{bno}
 	</delete>
-=======
->>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
 </mapper>

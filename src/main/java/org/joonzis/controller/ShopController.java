@@ -10,12 +10,10 @@ import org.joonzis.domain.Criteria;
 import org.joonzis.domain.OrderBookListVO;
 import org.joonzis.domain.OrderDetailVO;
 import org.joonzis.domain.PageDTO;
-<<<<<<< HEAD
-=======
 import org.joonzis.domain.SelectDTO;
 import org.joonzis.domain.UserVO;
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 import org.joonzis.service.ShopService;
+import org.joonzis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,7 +38,6 @@ public class ShopController {
 	@Autowired
 	private ShopService service;
 	
-<<<<<<< HEAD
 //	// 쇼핑 리스트 이동
 //	@GetMapping("/list")
 //	public String list(Model model) {
@@ -52,7 +49,6 @@ public class ShopController {
 //		
 //		return "/shop/shopList";
 //	}
-=======
 	@Autowired
 	private UserService uservice;
 	
@@ -83,7 +79,6 @@ public class ShopController {
 		model.addAttribute("checkCategorys", checkGener);
 		return "/shop/shopList";
 	}
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	
 	// 쇼핑 리스트 이동 ( 페이징 / 카테고리 선택 )
 	@GetMapping("/list")
@@ -97,35 +92,17 @@ public class ShopController {
 		}
 		
 		
-<<<<<<< HEAD
 		log.warn("컨트롤러 필터 타입3 : " + cri.getFilterType());
-		int total = service.getTotal();
-		log.info("total..." + total);
-=======
-		if(cri.getGener() == 0) {
 			int total = service.getTotal();
 			log.info("total..." + total);
->>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
+			log.info("total..." + total);
 			
 		model.addAttribute("list", service.getBookList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-			
-<<<<<<< HEAD
-=======
-		}else if(cri.getGener() > 0) {
-			int total = service.getTotalByGno(cri.getGener());
-			log.info("total..." + total);
-			
-			model.addAttribute("list", service.getBookListGe(cri));
-			model.addAttribute("pageMaker", new PageDTO(cri, total));
-		}
->>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
 		
 		return "/shop/shopList";
 	}
 	
-<<<<<<< HEAD
-=======
 	// 쇼핑 리스트 이동 ( 검색 )
 	@GetMapping("/listSelect")
 	public String listSelect(String selectOption, String selectValue, Model model) {
@@ -151,22 +128,18 @@ public class ShopController {
 		return "redirect:/shop/list";
 	}
 	
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
 	// 상품 보기 페이지 이동
 	@GetMapping("/get")
 	public String get(int bno, Model model) {
 		log.info("상품 보기 페이지..");
 		
 		// 모델에 담기
-<<<<<<< HEAD
 		BookVO vo = service.getBookOne(bno);
 		model.addAttribute("vo", vo);
 		// 모델 결과
-=======
 		model.addAttribute("bvo", vo);
-		model.addAttribute("bc", bookContent);
-		model.addAttribute("list", list);
->>>>>>> f3f22e68e736948b92548c818ccb6299ea94ae54
+//		model.addAttribute("bc", bookContent);
+//		model.addAttribute("list", list);
 		log.info(vo.getBookcover());
 		
 		return "/shop/shopGet";
@@ -274,7 +247,6 @@ public class ShopController {
 		
 		return result >= 1 ? new ResponseEntity<String>("success",HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-<<<<<<< HEAD
 	
 	// 단일 상품 결제 완료 후
 //	@ResponseBody
@@ -313,6 +285,4 @@ public class ShopController {
 		log.warn("상품 삭제 결과 : " + delete);
 		return "redirect:/shop/list";
 	}
-=======
->>>>>>> 626d3c8b71a92dfb8e07ee173d99341266f95cb0
 }
